@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<title>Votre Budget</title>
+  <meta charset="UTF-8">
+
+	<link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="S_Budget.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="nav-logo">
+				<a href="Accueil.html"><img src="Logo.jpeg" alt="Logo"></a>
+			</div>
+            <div class="dummy-nav-item"></div>
+            <ul>
+                <li class="current"><a href="Accueil.html">Accueil</a></li>
+                <li><a href="Votre_Budget.html">Votre Budget</a></li>
+                <li><a href="A_propos.html">À propos</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+            <div class="dummy-nav-item"></div>
+            <div class="nav-right">
+                <a href="Connexion_Inscription.html">Connexion / Inscription</a>
+            </div>
+		</nav>
+	</header>
+
+	<section id="form">
+		<h2>Entrez vos dépenses mensuelles</h2>
+		<form>
+			<label for="loyer">Loyer :</label>
+			<input type="number" id="loyer" name="loyer" required><br>
+
+			<label for="nourriture">Nourriture :</label>
+			<input type="number" id="nourriture" name="nourriture" required><br>
+
+			<label for="transport">Transport :</label>
+			<input type="number" id="transport" name="transport" required><br>
+
+			<label for="divertissement">Divertissement :</label>
+			<input type="number" id="divertissement" name="divertissement" required><br>
+
+			<input type="submit" value="Calculer">
+		</form>
+	</section>
+
+<! --/*/////////////////*/-->
+
+
+
+<! --/*///////////////////*/-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0"></script>
+<canvas id="myChart"></canvas>
+
+<script>
+  const canvas = document.getElementById('myChart');
+  const form = document.querySelector('form');
+  const loyerInput = document.getElementById('loyer');
+  const nourritureInput = document.getElementById('nourriture');
+  const transportInput = document.getElementById('transport');
+  const divertissementInput = document.getElementById('divertissement');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Empêche la soumission du formulaire
+    const loyer = parseFloat(loyerInput.value);
+    const nourriture = parseFloat(nourritureInput.value);
+    const transport = parseFloat(transportInput.value);
+    const divertissement = parseFloat(divertissementInput.value);
+    const data = [loyer, nourriture, transport, divertissement];
+    createChart(data); // Appelle la fonction pour créer le camembert
+  });
+
+  function createChart(data) {
+    const myChart = new Chart(canvas, {
+      type: 'pie',
+      data: {
+        labels: ['Loyer', 'Nourriture', 'Transport', 'Divertissement'],
+        datasets: [{
+          label: 'Dépenses mensuelles',
+          data: data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: false,
+        title: {
+          display: true,
+          text: 'Répartition de vos dépenses mensuelles',
+          fontSize: 16
+        },
+        legend: {
+          labels: {
+            fontSize: 12
+          }
+        }
+      }
+    });
+  }
+</script>
+
+
+
+</body>
+</html>
+
