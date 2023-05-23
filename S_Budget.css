@@ -71,7 +71,17 @@ nav a {
 }
 
 /* Styles pour les formulaires */
-form {
+form1 {
+	margin-top: 50px;
+	text-align: left;
+}
+
+form2 {
+	margin-top: 50px;
+	text-align: right;
+}
+
+form3 {
 	margin-top: 50px;
 	text-align: center;
 }
