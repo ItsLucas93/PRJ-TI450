@@ -1,9 +1,18 @@
-<!DOCTYPE html>
+<?php
+session_start();
 
+    include("conncetion.php");
+    include("functions.php");
+
+    $user_data = check_login($con);
+?>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 	<title>S_Budget - À propos</title>
 	<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="media/favicon.ico">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -12,14 +21,14 @@
 	<header>
 		<nav>
 			<div class="nav-logo">
-				<a href="index.html"><img src="media/logo_Header_1100x400.png" alt="Logo"></a>
+				<a href="index.php"><img src="media/logo_Header_1100x400.png" alt="Logo"></a>
 			</div>
             <div class="dummy-nav-item"></div>
             <ul>
-                <li class="current"><a href="index.html">Accueil</a></li>
+                <li class="current"><a href="index.php">Accueil</a></li>
                 <li><a href="yourbudget.html">Votre Budget</a></li>
                 <li><a href="about.html">À propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
             <div class="dummy-nav-item"></div>
             <div class="nav-right">
