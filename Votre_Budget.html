@@ -7,6 +7,7 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="S_Budget.css">
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="S_Budget.js"></script>
 </head>
@@ -60,9 +61,6 @@
 			  <label for="divertissement">Divertissement :</label>
 			  <input type="number" id="divertissement" name="divertissement" required><br>
 
-        <label for="remboursement">Remboursement(s) :</label>
-			  <input type="number" id="remboursement" name="remboursement" required><br>
-
         <label for="autre_depenses">Autre dépenses :</label>
 			  <input type="number" id="autre_depenses" name="autre_depenses" required><br>
 
@@ -70,7 +68,7 @@
 		  </form>
       <p id="totalDepenses"></p>
 	  </section>
-    <canvas id="myChart"></canvas>
+    <canvas id="depensesChart"></canvas>
 
   </div>
 
@@ -106,6 +104,14 @@
 </div>
 <div id="total"></div>
 
+</div>
+
+
+<canvas id="myChart"></canvas>
+
+<canvas id="repereRevenusChart"></canvas>
+
+<canvas id="repereDepensesChart"></canvas>
+
 </body>
 </html>
-

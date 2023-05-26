@@ -11,7 +11,7 @@ function recup_depenses(event) {
     var Remboursement = document.getElementById('remboursement').value;
     var Autre_Depenses = document.getElementById('autre_depenses').value;
 
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('depensesChart').getContext('2d');
     var myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -105,3 +105,147 @@ function recup_revenus(event) {
         }
     });
 }
+
+
+
+
+function total_revenus(event) {
+    event.preventDefault();
+    var Salaire = Number(document.getElementById('salaire').value);
+    var Aides_Sociales = Number(document.getElementById('aides_sociales').value);
+    var Bourse = Number(document.getElementById('bourse').value);
+    var Investissement = Number(document.getElementById('investissement').value);
+    var Locatif = Number(document.getElementById('locatif').value);
+    var Autre_Revenus = Number(document.getElementById('autre_revenus').value);
+
+    var total_revenus = Salaire + Aides_Sociales + Bourse + Investissement + Locatif + Autre_Revenus;
+}
+
+
+
+
+
+
+
+
+
+
+var depenses = [700, 600, 750, 800, 850, 550, 650, 750, 850, 800, 650, 700];
+var revenus = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
+var moyennes = [483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483];
+var revenus_moyens = [916, 916, 916, 916, 916, 916, 916, 916, 916, 916, 916, 916];
+var depenses_moyennes = [436, 436, 436, 436, 436, 436, 436, 436, 436, 436, 436, 436];
+
+
+var diff = [];
+for (var i = 0; i < revenus.length; i++) {
+    diff[i] = revenus[i] - depenses[i];
+}
+
+
+
+function repere() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Calculate difference between revenues and expenses
+    var difference = revenus.map(function(item, index) {
+        return item - depenses[index];
+    });
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Moyennes',
+                data: moyennes,
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Différence Revenus - Dépenses',
+                data: difference,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
+
+
+
+
+
+function repereRevenus() {
+    var ctx = document.getElementById('repereRevenusChart').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Revenus',
+                data: revenus,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
+
+function repereDepenses() {
+    var ctx = document.getElementById('repereDepensesChart').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Dépenses',
+                data: depenses,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255,99,132,1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    repere('depensesChart');
+    repereRevenus('repereRevenuesChart');
+    repereDepenses(repereDepensesChart);
+});
