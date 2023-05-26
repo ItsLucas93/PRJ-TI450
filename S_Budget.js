@@ -8,7 +8,6 @@ function recup_depenses(event) {
     var Assurances = document.getElementById('assurances').value;
     var Transports = document.getElementById('transport').value;
     var Divertissements = document.getElementById('divertissement').value;
-    var Remboursement = document.getElementById('remboursement').value;
     var Autre_Depenses = document.getElementById('autre_depenses').value;
 
     var ctx = document.getElementById('depensesChart').getContext('2d');
@@ -17,7 +16,7 @@ function recup_depenses(event) {
         data: {
             labels: ['Loyer', 'Services_Publics', 'Alimentation', 'Hygiène', 'Abonnements', 'Assurances', 'Transports', 'Divertissements', 'Remboursement', 'Autre_Depenses'],
             datasets: [{
-                data: [Loyer, Services_Publics, Alimentation, Hygiene, Abonnements, Assurances, Transports, Divertissements, Remboursement, Autre_Depenses],
+                data: [Loyer, Services_Publics, Alimentation, Hygiene, Abonnements, Assurances, Transports, Divertissements, Autre_Depenses],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',  // couleur pour Loyer
                     'rgba(54, 162, 235, 0.2)',  // couleur pour Services_Publics
@@ -27,7 +26,6 @@ function recup_depenses(event) {
                     'rgba(255, 159, 64, 0.2)',  // couleur pour Assurances
                     'rgba(255, 99, 132, 0.2)',  // couleur pour Transports
                     'rgba(54, 162, 235, 0.2)',  // couleur pour Divertissements
-                    'rgba(255, 206, 86, 0.2)',  // couleur pour Remboursement
                     'rgba(75, 192, 192, 0.2)'  // couleur pour Autre_Depenses
                 ],
                 borderColor: [
@@ -39,7 +37,6 @@ function recup_depenses(event) {
                     'rgba(255, 159, 64, 1)',
                     'rgba(255,99,132,1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)'
                 ],
                 borderWidth: 1
