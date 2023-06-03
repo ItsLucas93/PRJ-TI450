@@ -35,8 +35,6 @@ if($result && mysqli_num_rows($result) > 0) {
     $user_data_profil = mysqli_fetch_assoc($result);
 }
 
-print_r($user_data_profil);
-
 // POST REQUEST
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
