@@ -4,6 +4,11 @@ session_start();
     include("conncetion.php");
     include("functions.php");
 
+    $user_data = check_login($con);
+    if ($user_data != false) {
+        header("Location: index.php");
+    }
+
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         $user_username = $_POST['username'];
@@ -15,7 +20,7 @@ session_start();
         if(!empty($user_username) && !empty($user_password) && (!is_numeric($user_username)))
         {
             //save to database
-            $user_id = random_num($con,20);
+            $user_id = random_num($con, 20);
             //echo($user_username. " " . $user_email . " " . $user_password . " " . $user_id);
             $query = "INSERT INTO user (user_id, user_username, user_email, user_password) VALUES ('$user_id', '$user_username', '$user_email', '$user_password')";
 
@@ -33,13 +38,15 @@ session_start();
 
 <html lang="fr">
 <head>
-	<title>S_Budget - Connexion / Inscription</title>
+	<title>S.BUDGET - Signup</title>
 	<meta charset="UTF-8">
-	<link rel="icon" type="image/png" href="media/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="media/favicon.ico" sizes="32x32">
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <header>
@@ -63,25 +70,23 @@ session_start();
 
 	<section id="form">
 		<h2>Inscrivez vous:</h2>
-		<form>
+		<form method="post">
 			<h2>Créez votre compte:</h2>
-			
-			<label for="firstname">Identifiant :</label><br>
-			<input type="text" id="username" name="username" placeholder="Identifiant" required><br>
-			
-            <label for="email">Email :</label><br>
-			<input type="email" id="email" name="email" placeholder="email@gmail.com" required><br>
-			
+
+            <label for="username"><b>Identifiant</b></label>
+            <input type="text" name="username" id="username" placeholder="Entrez votre identifiant" required>
+
+            <label for="email"><b>E-mail</b></label>
+            <input type="email" name="email" id="email" placeholder="Entrez votre email" required>
+
+            <label for="password"><b>Mot de passe</b></label>
+            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
+
+            <label for="confirm_password"><b>Confirmez le mot de passe</b></label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmez votre mot de passe" required>
+
             <br>
-
-            <label for="password">Mot de passe :</label><br>
-			<input type="password" id="password" name="password" placeholder="Mot de passe" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins un chiffre, une majuscule, une minuscule et un caractère spécial." required><br>
-
-             <label for="confirm_password"><b>Confirmez le mot de passe</b></label>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer Mot de passe" required>
-            <br><br>
-
-            <input type="submit" value="S'inscrire">
+            <input class="btn" type="submit" value="S'inscrire">
 		</form>
 		<p>Vous avez déjà un compte ? <a href="login.php">Connectez vous ici</a></p>
 	</section>

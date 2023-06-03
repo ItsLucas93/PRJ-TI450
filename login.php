@@ -4,6 +4,11 @@ session_start();
     include("conncetion.php");
     include("functions.php");
 
+    $user_data = check_login($con);
+    if ($user_data != false) {
+        header("Location: index.php");
+    }
+
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         $user_username = $_POST['username'];
@@ -46,13 +51,15 @@ session_start();
 
 <html lang="fr">
 <head>
-	<title>Connexion - S_Budget</title>
+	<title>S.BUDGET - Login</title>
 	<meta charset="UTF-8">
-	<link rel="icon" type="image/png" href="media/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="media/favicon.ico" sizes="32x32">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -86,13 +93,13 @@ session_start();
             <br><br>
 
 			<label for="password">Mot de passe:</label>
-			<input type="password" id="password" name="password" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial">
+			<input type="password" id="password" name="password" placeholder="Mot de passe">
 			
             <br><br><br>
             
             <input type="submit" value="Connexion">
 		</form>
-        <br><br><br><br><br><br><br><br><br><br>
+        <br><br>
 		<p>Vous n'avez pas de compte ? <a href="signup.php">Inscrivez-vous ici</a></p>
 	</section>
 
