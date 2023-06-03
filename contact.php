@@ -39,26 +39,26 @@ session_start();
     </nav>
 </header>
 
-    <section id="contact">
-        <h1>Contactez-nous</h1>
-        <p>N'hésitez pas à nous contacter pour toute question, suggestion ou demande d'assistance. Nous sommes là pour vous aider.</p>
-    
-        <form action="envoi-email.php" method="post">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
-    
-            <label for="email">Adresse e-mail :</label>
-            <input type="email" id="email" name="email" required>
-            
-            <br><br>
+<section id="contact">
+    <h1>Contactez-nous</h1>
+    <p>N'hésitez pas à nous contacter pour toute question, suggestion ou demande d'assistance. Nous sommes là pour vous aider.</p>
 
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" required></textarea>
-    
-            <br><br>
-            <input type="submit" value="Envoyer">
-        </form>
-    </section>
+    <form action="send_mail.php" method="post">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="email">Adresse e-mail :</label>
+        <input type="email" id="email" name="email" required>
+
+        <br><br>
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <br><br>
+        <input type="submit" value="Envoyer">
+    </form>
+</section>
 
 
 
