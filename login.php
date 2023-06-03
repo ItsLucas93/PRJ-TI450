@@ -9,7 +9,8 @@ session_start();
         header("Location: index.php");
     }
 
-    if($_SERVER['REQUEST_METHOD'] == "POST")
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         $user_username = $_POST['username'];
         $user_password = $_POST['password'];
@@ -81,6 +82,19 @@ session_start();
         </div>
     </nav>
 </header>
+
+<?php
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']);
+} else {
+    $message = '';
+}
+
+echo $message;
+
+?>
 
 	<section id="form">
 		<h2>Connectez vous:</h2>
