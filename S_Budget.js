@@ -1,5 +1,8 @@
-var myPieChart, myLineChart;
+var myPieChart, myLineChart, myBarChart;
 
+
+var depenses = [700, 600, 750, 800, 850, 550, 650, 750, 850, 800, 650, 700];
+var moyennes = [483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483];
 
 function recup_depenses(event) {
     event.preventDefault();  // Cela évite le rafraîchissement de la page lors de la soumission du formulaire
@@ -18,22 +21,57 @@ function recup_depenses(event) {
 
     // Appelle la fonction d'affichage du diagramme avec les dépenses récupérées en argument
     affiche_camembert(depenses);
+
+    affiche_barChart(depenses);
+}
+
+window.onload = function() {
+    var btnCalculerDepenses = document.getElementById('calculer_depenses');
+    var btnCalculerRevenus = document.getElementById('calculer_revenus');
 }
 
 
 
-var depenses = [700, 600, 750, 800, 850, 550, 650, 750, 850, 800, 650, 700];
-var revenus = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
-var moyennes = [483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483];
-var revenus_moyens = [916, 916, 916, 916, 916, 916, 916, 916, 916, 916, 916, 916];
-var depenses_moyennes = [436, 436, 436, 436, 436, 436, 436, 436, 436, 436, 436, 436];
 
 
-var diff = [];
-for (var i = 0; i < revenus.length; i++) {
-    diff[i] = revenus[i] - depenses[i];
+function affiche_barChart(depenses) {
+    var ctx = document.getElementById('barChart').getContext('2d');
+    
+    const existingValues = [400, 180, 320, 140, 70, 120, 80, 110, 60]; // Remplacer par les valeurs moyennes réelles
+
+    // Si un graphique existe déjà, le détruire avant de créer un nouveau
+    if (myBarChart) {
+        myBarChart.destroy();
+    }
+
+    myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(depenses),
+            datasets: [
+                {
+                    label: 'Vos dépenses',
+                    data: Object.values(depenses),
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)'
+                },
+                {
+                    label: 'Moyenne des dépenses',
+                    data: existingValues,
+                    backgroundColor: 'rgba(220, 53, 69, 0.5)'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: { },
+                y: { 
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
-
 
 
 function affiche_camembert(depenses) {
@@ -143,6 +181,7 @@ function repereDepensesTotal(totalDepenses) {
 
 
 
+var revenus = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
 
 
 
@@ -170,6 +209,7 @@ function recup_revenus(event) {
 
     // Appelle la fonction d'affichage du diagramme avec les revenus récupérés en argument
     affiche_camembert_revenus(revenusData, totalRevenus);
+    affiche_barChart_revenus(revenusData);
 }
 
 // Fonction pour afficher le camembert des revenus
@@ -204,8 +244,53 @@ function affiche_camembert_revenus(revenusData, totalRevenus) {
     repereRevenusTotal(totalRevenus, revenusData);
 }
 
+
+
+var myRevenuesPieChart, myRevenuesLineChart, myRevenuesBarChart;
+
+// Fonction pour afficher le graphique à barres des revenus
+function affiche_barChart_revenus(revenusData) {
+    var ctx = document.getElementById('revenuesBarChart').getContext('2d');
+
+    const existingValues = [400, 180, 320, 140, 70, 120, 80]; // Remplacer par les valeurs moyennes réelles
+
+    // Si un graphique existe déjà, le détruire avant de créer un nouveau
+    if (myRevenuesBarChart) {
+        myRevenuesBarChart.destroy();
+    }
+
+    myRevenuesBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(revenusData),
+            datasets: [
+                {
+                    label: 'Vos revenus',
+                    data: Object.values(revenusData),
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)'
+                },
+                {
+                    label: 'Moyenne des revenus',
+                    data: existingValues,
+                    backgroundColor: 'rgba(220, 53, 69, 0.5)'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: { },
+                y: { 
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+
 // Variable globale pour les données de la deuxième courbe de revenus
-var revenus = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
+var revenus = [1250, 1100, 1125, 1300, 1200, 1215, 1210, 1110, 1216, 1170, 1190, 1230];
 
 var myChart = null;
 
@@ -253,54 +338,6 @@ function repereRevenusTotal(totalRevenus, revenusData) {
 
 
 
-// Variable globale pour stocker le graphique
-var myDiffChart = null;
-
-// Variable globale pour les valeurs moyennes
-var moyennes = [483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483];
-
-// Fonction pour afficher la différence des revenus sur un graphique linéaire
-function repereDifferencesRevenus(totalRevenus, revenusData) {
-    var ctx = document.getElementById('differencesRevenusChart').getContext('2d');
-
-    // Si le graphique existe déjà, le détruire
-    if (myDiffChart !== null) {
-        myDiffChart.destroy();
-    }
-
-    // Calculer la différence entre le total des revenus et chaque valeur dans le tableau des revenus
-    var differences = revenus.map(val => totalRevenus - val);
-
-    myDiffChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [
-                {
-                    label: 'Différences des revenus',
-                    data: differences,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Moyennes',
-                    data: moyennes,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-}
 
 
 
@@ -308,5 +345,4 @@ function repereDifferencesRevenus(totalRevenus, revenusData) {
 document.addEventListener('DOMContentLoaded', (event) => {
     repereRevenusTotal('repereRevenuesChart');
     repereDepensesTotal('repereDepensesChart');
-    repereDifferencesRevenus('differencesRevenusChart');
 });
