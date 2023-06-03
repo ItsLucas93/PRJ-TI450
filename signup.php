@@ -67,18 +67,18 @@ session_start();
 			<h2>Créez votre compte:</h2>
 			
 			<label for="firstname">Identifiant :</label><br>
-			<input type="text" id="username" name="username" required><br>
+			<input type="text" id="username" name="username" placeholder="Identifiant" required><br>
 			
             <label for="email">Email :</label><br>
-			<input type="email" id="email" name="email" required><br>
+			<input type="email" id="email" name="email" placeholder="email@gmail.com" required><br>
 			
             <br>
 
             <label for="password">Mot de passe :</label><br>
-			<input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins un chiffre, une majuscule, une minuscule et un caractère spécial." required><br>
+			<input type="password" id="password" name="password" placeholder="Mot de passe" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins un chiffre, une majuscule, une minuscule et un caractère spécial." required><br>
 
              <label for="confirm_password"><b>Confirmez le mot de passe</b></label>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmez votre mot de passe" required>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer Mot de passe" required>
             <br><br>
 
             <input type="submit" value="S'inscrire">

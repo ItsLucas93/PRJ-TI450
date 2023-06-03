@@ -81,19 +81,19 @@ session_start();
 			<h2>Connexion:</h2>
             <br>
 			<label for="username">Identifiant :</label>
-			<input type="username" id="username" name="username" value="Identifiant" required>
+			<input type="text" id="username" name="username" placeholder="Identifiant" required>
             
             <br><br>
 
 			<label for="password">Mot de passe:</label>
-			<input type="password" id="password" name="password" value="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial">
+			<input type="password" id="password" name="password" placeholder="Mot de passe" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial">
 			
             <br><br><br>
             
             <input type="submit" value="Connexion">
 		</form>
         <br><br><br><br><br><br><br><br><br><br>
-		<p>Vous n'avez pas de compte ? <a href="signup.html">Inscrivez-vous ici</a></p>
+		<p>Vous n'avez pas de compte ? <a href="signup.php">Inscrivez-vous ici</a></p>
 	</section>
 
 <footer>
