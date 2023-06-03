@@ -7,21 +7,6 @@ session_start();
     $user_data = check_login($con);
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <title>S.BUDGET - Accueil</title>
-    </head>
-
-    <body>
-    <?php if(!isset($user_data['user_username'])) echo '<a href="login.php">Login</a><br>' ?>
-    <a href="signup.php">Signup</a><br>
-    <?php if(isset($user_data['user_username'])) echo '<a href="logout.php">Logout</a><br>' ?>
-
-    <br>
-    <h1>Hello <?php if(isset($user_data['user_username'])) {echo $user_data['user_username'];} else {echo null;} ?></h1>
-    </body>
-</html> -->
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -59,7 +44,7 @@ session_start();
 	</header>
 
 		<section id="intro">
-			<h1>S_Budget</h1>
+			<h1>S.Budget</h1>
 			<p>Un outil simple pour gérer votre budget mensuel.</p>
 			<a href="yourbudget.php">Commencer</a>
 	</section>
@@ -93,11 +78,11 @@ session_start();
 				<h2>Témoignages</h2>
 
 				<div class="testimonial active">
-					<p>"S_Budget a changé ma vie. Je suis maintenant capable de gérer mon argent de manière beaucoup plus efficace." - Étudiant à l'Université de Paris</p>
+					<p>"S.Budget a changé ma vie. Je suis maintenant capable de gérer mon argent de manière beaucoup plus efficace." - Étudiant à l'Université de Paris</p>
 				</div>
 
 				<div class="testimonial">
-					<p>"Je ne savais pas comment organiser mon budget avant d'utiliser S_Budget. Maintenant, je peux économiser pour l'avenir." - Étudiante à l'Université de Lyon</p>
+					<p>"Je ne savais pas comment organiser mon budget avant d'utiliser S.Budget. Maintenant, je peux économiser pour l'avenir." - Étudiante à l'Université de Lyon</p>
 				</div>
 
 				<button id="prev">← Précédent</button>
@@ -124,13 +109,13 @@ session_start();
 			<h2>FAQ</h2>
 
 			<div class="faq-item active">
-				<p><strong>Comment puis-je commencer à utiliser S_Budget ?</strong><br>
+				<p><strong>Comment puis-je commencer à utiliser S.Budget ?</strong><br>
 				Cliquez sur le bouton "Commencer maintenant" sur notre page d'accueil pour vous inscrire et commencer à utiliser notre outil de gestion de budget.</p>
 			</div>
 
 			<div class="faq-item">
-				<p><strong>Est-ce que S_Budget est gratuit ?</strong><br>
-				Oui, S_Budget est totalement gratuit pour les étudiants. Nous proposons également un plan premium avec des fonctionnalités supplémentaires.</p>
+				<p><strong>Est-ce que S.Budget est gratuit ?</strong><br>
+				Oui, S.Budget est totalement gratuit pour les étudiants. Nous proposons également un plan premium avec des fonctionnalités supplémentaires.</p>
 			</div>
 
 			<!-- ... autres questions ... -->
