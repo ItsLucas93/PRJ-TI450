@@ -32,7 +32,7 @@ session_start();
 	<link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <link rel="icon" href="media/favicon.ico" sizes="32x32">
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
@@ -177,13 +177,13 @@ session_start();
 
 		<p>Suivez-nous sur les réseaux :</p>
 		<div class="social-media-icons">
-		  <i class="fab fa-facebook-f"></i>
-		  <i class="fab fa-twitter"></i>
-		  <i class="fab fa-instagram"></i>
+            <a href="https://www.facebook.com/EfreiParis/?locale=fr_FR" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/Efrei_Paris" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/efrei_paris" target="_blank"><i class="fab fa-instagram"></i></a>
 		</div>
 
 
-		<p>&copy; 2023 S_Budget - Tous droits réservés.</p>
+        <p>&copy; 2023 S_Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
 	</footer>
 
 </body>

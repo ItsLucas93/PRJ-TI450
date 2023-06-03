@@ -18,24 +18,24 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<div class="nav-logo">
-				<a href="index.php"><img src="media/logo_Header_1100x400.png" alt="Logo"></a>
-			</div>
-            <div class="dummy-nav-item"></div>
-            <ul>
-                <li class="current"><a href="index.php">Accueil</a></li>
-                <li><a href="yourbudget.html">Votre Budget</a></li>
-                <li><a href="about.html">À propos</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-            <div class="dummy-nav-item"></div>
-            <div class="nav-right">
-                <a href="loginsignup.html">Connexion / Inscription</a>
-            </div>
-		</nav>
-	</header>
+<header>
+    <nav>
+        <div class="nav-logo">
+            <a href="index.php"><img src="media/logo_Header_1100x400.png" alt="Logo"></a>
+        </div>
+        <div class="dummy-nav-item"></div>
+        <ul>
+            <li class="current"><a href="index.php">Accueil</a></li>
+            <li><a href="yourbudget.php">Votre Budget</a></li>
+            <li><a href="about.php">À propos</a></li>
+            <li><a href="contact.php">Contact</a></li>
+        </ul>
+        <div class="dummy-nav-item"></div>
+        <div class="nav-right">
+            <a href="login.php">Connexion / Inscription</a>
+        </div>
+    </nav>
+</header>
 
 	<section id="about">
 		<h2>À propos de S_Budget</h2>

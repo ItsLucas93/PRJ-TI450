@@ -28,13 +28,13 @@ session_start();
         <div class="dummy-nav-item"></div>
         <ul>
             <li class="current"><a href="index.php">Accueil</a></li>
-            <li><a href="yourbudget.html">Votre Budget</a></li>
+            <li><a href="yourbudget.php">Votre Budget</a></li>
             <li><a href="about.php">À propos</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
         <div class="dummy-nav-item"></div>
         <div class="nav-right">
-            <a href="loginsignup.php">Connexion / Inscription</a>
+            <a href="login.php">Connexion / Inscription</a>
         </div>
     </nav>
 </header>
