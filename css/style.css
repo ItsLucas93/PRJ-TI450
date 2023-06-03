@@ -23,6 +23,7 @@ nav {
 
 .dummy-nav-item {
 	flex: 0 0 200px; /* it should be the same as .nav-logo, .nav-right */
+	background-image: image();
 }
 
 nav ul {
@@ -268,3 +269,225 @@ table td {
 .right {
 	background-color: #ccc;
 }
+
+
+
+
+
+
+
+
+
+ /* Footer Section */
+ footer {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    clear: both; /* Clear floats */
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+.social-media-icons {
+    margin-top: 10px;
+}
+
+.social-media-icons i {
+    margin-right: 10px;
+    color: #fff;
+    font-size: 20px;
+}
+
+
+
+/* Styles for the about page */
+#about {
+	text-align: center;
+	padding: 50px 0;
+  }
+  
+  #about h2 {
+	font-size: 2.5em;
+	margin-bottom: 20px;
+  }
+  
+  #about p {
+	font-size: 1.2em;
+	margin-bottom: 10px; /* Reduce the margin between paragraphs */
+  }
+  
+  #about ol {
+	text-align: left;
+	margin-bottom: 20px;
+  }
+  
+  #about li {
+	font-size: 1.2em;
+	margin-bottom: 10px;
+  }
+  
+  #about .profile-image {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 50%;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+
+
+
+
+
+
+
+
+.image-gallery_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.gallery-item_2 {
+    flex: 1 1 300px;
+    margin: 10px;
+    text-align: center;
+}
+
+.item-image_2 {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.item-description_2 {
+    margin-top: 10px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .image-gallery_2 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gallery-item_2 {
+        flex: 1 1 100%;
+    }
+
+    .item-image_2 {
+        max-width: 100%;
+    }
+}
+  
+  .item-description_2 {
+	  align-self: flex-start; /* Adjust alignment of descriptions */
+	  text-transform: uppercase;
+	  color: #fff;
+	  margin-top: 10px; /* Reduce the margin between description and image */
+  }
+  
+  .name {
+	  font-size: 37px;
+	  background: linear-gradient(90deg, #f32d5b, #ff009b);
+	  padding-inline: translateY(-10px);
+  }
+  
+  .role {
+	  display: inline-block;
+	  background: linear-gradient(90deg, #4136d9, #0086c7);
+	  padding: 10px;
+	  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+	  transform: translateY(10px);
+  }
+  
+  .name,
+  .role {
+	opacity: 0;
+	transition: opacity 0.25s, transform 0.3s;
+	transition-delay: .35s;
+  }
+  
+  .gallery-item_2:hover .name,
+  .gallery-item_2:hover .role {
+	opacity: 1;
+	transform: translateY(0);
+  }
+  
+  .gallery-item_2:not(:hover) .name,
+  .gallery-item_2:not(:hover) .role {
+	transition-delay: 0s;
+  }
+
+/** Accueil **/
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+section {
+	padding: 20px;
+}
+
+#intro {
+	background-color: #f2f2f2;
+}
+
+#features {
+	background-color: #fff;
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+}
+
+#features div {
+	width: 30%;
+	margin: 15px;
+}
+
+#testimonials {
+	background-color: #f2f2f2;
+	text-align: center;
+}
+
+#faq {
+	background-color: #fff;
+	text-align: center;
+}
+
+.faq-item {
+	display: none;
+}
+
+.faq-item.active {
+	display: block;
+}
+
+#contact {
+	background-color: #f2f2f2;
+	text-align: center;
+}
+
+#about {
+	background-color: #fff;
+}
+
+#cta {
+	background: linear-gradient(to right, green, purple, orange);
+	color: white;
+	text-align: center;
+}
+
+.testimonial {
+	display: none;
+}
+
+.testimonial.active {
+	display: block;
+}
+

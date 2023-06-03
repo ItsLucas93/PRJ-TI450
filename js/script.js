@@ -1,23 +1,58 @@
+var myPieChart, myLineChart;
+
+
 function recup_depenses(event) {
     event.preventDefault();  // Cela évite le rafraîchissement de la page lors de la soumission du formulaire
-    var Loyer = document.getElementById('loyer').value;
-    var Services_Publics = document.getElementById('services_publics').value;
-    var Alimentation = document.getElementById('alimentation').value;
-    var Hygiene = document.getElementById('hygiene').value;
-    var Abonnements = document.getElementById('abonnements').value;
-    var Assurances = document.getElementById('assurances').value;
-    var Transports = document.getElementById('transport').value;
-    var Divertissements = document.getElementById('divertissement').value;
-    var Remboursement = document.getElementById('remboursement').value;
-    var Autre_Depenses = document.getElementById('autre_depenses').value;
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myPieChart = new Chart(ctx, {
+    var depenses = {
+        Loyer: document.getElementById('loyer').value,
+        Services_Publics: document.getElementById('services_publics').value,
+        Alimentation: document.getElementById('alimentation').value,
+        Hygiene: document.getElementById('hygiene').value,
+        Abonnements: document.getElementById('abonnements').value,
+        Assurances: document.getElementById('assurances').value,
+        Transports: document.getElementById('transport').value,
+        Divertissements: document.getElementById('divertissement').value,
+        Autre_Depenses: document.getElementById('autre_depenses').value
+    };
+
+    // Appelle la fonction d'affichage du diagramme avec les dépenses récupérées en argument
+    affiche_camembert(depenses);
+}
+
+
+
+var depenses = [700, 600, 750, 800, 850, 550, 650, 750, 850, 800, 650, 700];
+var revenus = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
+var moyennes = [483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483];
+var revenus_moyens = [916, 916, 916, 916, 916, 916, 916, 916, 916, 916, 916, 916];
+var depenses_moyennes = [436, 436, 436, 436, 436, 436, 436, 436, 436, 436, 436, 436];
+
+
+var diff = [];
+for (var i = 0; i < revenus.length; i++) {
+    diff[i] = revenus[i] - depenses[i];
+}
+
+
+
+function affiche_camembert(depenses) {
+    var ctx = document.getElementById('depensesChart').getContext('2d');
+
+    // Si un graphique existe déjà, le détruire avant de créer un nouveau
+    if (myPieChart) {
+        myPieChart.destroy();
+    }
+
+    // Calculer le total des dépenses
+    var totalDepenses = Object.values(depenses).reduce(function(a, b) { return parseFloat(a) + parseFloat(b); }, 0);
+
+    myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Loyer', 'Services_Publics', 'Alimentation', 'Hygiène', 'Abonnements', 'Assurances', 'Transports', 'Divertissements', 'Remboursement', 'Autre_Depenses'],
+            labels: Object.keys(depenses),
             datasets: [{
-                data: [Loyer, Services_Publics, Alimentation, Hygiene, Abonnements, Assurances, Transports, Divertissements, Remboursement, Autre_Depenses],
+                data: Object.values(depenses),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',  // couleur pour Loyer
                     'rgba(54, 162, 235, 0.2)',  // couleur pour Services_Publics
@@ -27,7 +62,6 @@ function recup_depenses(event) {
                     'rgba(255, 159, 64, 0.2)',  // couleur pour Assurances
                     'rgba(255, 99, 132, 0.2)',  // couleur pour Transports
                     'rgba(54, 162, 235, 0.2)',  // couleur pour Divertissements
-                    'rgba(255, 206, 86, 0.2)',  // couleur pour Remboursement
                     'rgba(75, 192, 192, 0.2)'  // couleur pour Autre_Depenses
                 ],
                 borderColor: [
@@ -39,7 +73,6 @@ function recup_depenses(event) {
                     'rgba(255, 159, 64, 1)',
                     'rgba(255,99,132,1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)'
                 ],
                 borderWidth: 1
@@ -52,6 +85,50 @@ function recup_depenses(event) {
             }
         }
     });
+
+    // Appelle la fonction d'affichage du graphique linéaire avec le total des dépenses
+    repereDepensesTotal(totalDepenses);
+}
+
+
+function repereDepensesTotal(totalDepenses) {
+    var ctx = document.getElementById('repereDepensesChart').getContext('2d');
+    var depenses = Array(12).fill(totalDepenses);
+
+    var depensesDetaillees = [700, 600, 750, 800, 850, 550, 650, 750, 850, 800, 650, 700];  // Ajoutez votre liste de dépenses détaillées ici
+
+    // Si un graphique existe déjà, le détruire avant de créer un nouveau
+    if (myLineChart) {
+        myLineChart.destroy();
+    }
+
+    myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Total Dépenses',
+                data: depenses,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255,99,132,1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Dépenses détaillées',
+                data: depensesDetaillees,  // Utilisez la liste de dépenses détaillées ici
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 
@@ -59,31 +136,51 @@ function recup_depenses(event) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+// Fonction pour récupérer les revenus
 function recup_revenus(event) {
     event.preventDefault();
-    var Salaire = Number(document.getElementById('salaire').value);
-    var Aides_Sociales = Number(document.getElementById('aides_sociales').value);
-    var Bourse = Number(document.getElementById('bourse').value);
-    var Investissement = Number(document.getElementById('investissement').value);
-    var Locatif = Number(document.getElementById('locatif').value);
-    var Autre_Revenus = Number(document.getElementById('autre_revenus').value);
 
-    var totalRevenus = Salaire + Aides_Sociales + Bourse + Investissement + Locatif + Autre_Revenus;
+    var revenusData = {
+        Salaire: Number(document.getElementById('salaire').value),
+        Aides_Sociales: Number(document.getElementById('aides_sociales').value),
+        Bourse: Number(document.getElementById('bourse').value),
+        Investissement: Number(document.getElementById('investissement').value),
+        Locatif: Number(document.getElementById('locatif').value),
+        Autre_Revenus: Number(document.getElementById('autre_revenus').value)
+    };
 
+    var totalRevenus = Object.values(revenusData).reduce((acc, val) => acc + val, 0);
+    
     var totalRevenusElement = document.getElementById('totalRevenus');
-    if (totalRevenusElement) {  // Vérifiez si l'élément existe avant d'essayer de définir ses propriétés
+    if (totalRevenusElement) {
         totalRevenusElement.innerText = "Total Revenus : " + totalRevenus;
     } else {
         console.log('Élément "totalRevenus" introuvable.');
     }
 
+    // Appelle la fonction d'affichage du diagramme avec les revenus récupérés en argument
+    affiche_camembert_revenus(revenusData, totalRevenus);
+}
+
+// Fonction pour afficher le camembert des revenus
+function affiche_camembert_revenus(revenusData, totalRevenus) {
     var ctx = document.getElementById('revenuesChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Salaire', 'Aides Sociales', 'Bourse', 'Investissement', 'Locatif', 'Autres Revenus'],
+            labels: Object.keys(revenusData),
             datasets: [{
-                data: [Salaire, Aides_Sociales, Bourse, Investissement, Locatif, Autre_Revenus],
+                data: Object.values(revenusData),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -104,4 +201,112 @@ function recup_revenus(event) {
             }]
         }
     });
+    repereRevenusTotal(totalRevenus, revenusData);
 }
+
+// Variable globale pour les données de la deuxième courbe de revenus
+var revenus = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
+
+var myChart = null;
+
+// Fonction pour afficher le total des revenus sur un graphique linéaire
+function repereRevenusTotal(totalRevenus, revenusData) {
+    var ctx = document.getElementById('repereRevenusChart').getContext('2d');
+
+    // Si le graphique existe déjà, le détruire
+    if (myChart !== null) {
+        myChart.destroy();
+    }
+
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [
+                {
+                    label: 'Revenus total',
+                    data: Array(12).fill(totalRevenus),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Revenus',
+                    data: revenus,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+
+
+
+
+// Variable globale pour stocker le graphique
+var myDiffChart = null;
+
+// Variable globale pour les valeurs moyennes
+var moyennes = [483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483, 483];
+
+// Fonction pour afficher la différence des revenus sur un graphique linéaire
+function repereDifferencesRevenus(totalRevenus, revenusData) {
+    var ctx = document.getElementById('differencesRevenusChart').getContext('2d');
+
+    // Si le graphique existe déjà, le détruire
+    if (myDiffChart !== null) {
+        myDiffChart.destroy();
+    }
+
+    // Calculer la différence entre le total des revenus et chaque valeur dans le tableau des revenus
+    var differences = revenus.map(val => totalRevenus - val);
+
+    myDiffChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [
+                {
+                    label: 'Différences des revenus',
+                    data: differences,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Moyennes',
+                    data: moyennes,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    repereRevenusTotal('repereRevenuesChart');
+    repereDepensesTotal('repereDepensesChart');
+    repereDifferencesRevenus('differencesRevenusChart');
+});
