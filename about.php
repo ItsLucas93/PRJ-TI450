@@ -107,7 +107,7 @@ session_start();
 		</h2>
 		<div class="gallery-wrapper">
 			<figure class="gallery-item">
-				<img src="https://www.conseiller.ca/wp-content/uploads/sites/4/2019/05/calculer-depenses-800x600.jpg" alt="" class="item-image" />
+				<img src="media/about_1.jpeg" alt="" class="item-image" />
 				<figcaption class="item-description">
 					<h2 class="name">Suivi</h2>
 					<span class="role">Comprendre le comportement de votre budget</span>
@@ -115,7 +115,7 @@ session_start();
 			</figure>
 		
 			<figure class="gallery-item">
-				<img src="https://image.freepik.com/vecteurs-libre/planification-gestion-du-temps-planification_108855-1640.jpg" alt="" class="item-image" />
+				<img src="media/about_2.png" alt="" class="item-image" />
 				<figcaption class="item-description">
 					<h2 class="name">Planification</h2>
 					<span class="role">Définir vos objectifs financiers</span>
@@ -123,7 +123,7 @@ session_start();
 			</figure>
 
 			<figure class="gallery-item">
-				<img src="https://thumbs.dreamstime.com/b/businessman-analyse-business-concept-separated-white-40517419.jpg" alt="" class="item-image" />
+				<img src="media/about_3.jpeg" alt="" class="item-image" />
 				<figcaption class="item-description">
 					<h2 class="name">Analyse</h2>
 					<span class="role">Vue d'ensemble sur vos habitudes mensuelles</span>
