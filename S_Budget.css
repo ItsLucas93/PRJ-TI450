@@ -23,6 +23,7 @@ nav {
 
 .dummy-nav-item {
 	flex: 0 0 200px; /* it should be the same as .nav-logo, .nav-right */
+	background-image: image();
 }
 
 nav ul {
