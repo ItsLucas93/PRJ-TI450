@@ -37,16 +37,14 @@ session_start();
     </nav>
 </header>
 
-	<section id="about">
-		<h2>À propos de S_Budget</h2>
-		<p>L'objectif de S_Budget se repose sur trois piliers :</p>
-		<ol>
-			<li><strong>Suivi des recettes/dépenses :</strong> Pour vous permettre de mieux comprendre où va votre argent et comment vous pouvez l'utiliser de manière plus efficace.</li>
-			<li><strong>Planification du budget :</strong> Pour vous aider à définir vos objectifs financiers et à créer un plan d'action réaliste pour les atteindre.</li>
-			<li><strong>Analyse des tendances :</strong> Pour vous donner une vue d'ensemble de vos habitudes de dépenses et de la manière dont elles évoluent au fil du temps.</li>
-		</ol>
-		<p>Notre plateforme web est accessible sur tous les appareils du public cible de manière conviviale et intuitive pour répondre aux besoins du particulier (sur smartphone, tablette, ordinateur).</p>
-	</section>
+<section id="about">
+    <div class="container">
+        <h2>À propos de nous</h2>
+        <p>Bienvenue sur S_Budget, votre plateforme incontournable pour gérer vos finances personnelles et votre budget de manière efficace. Notre mission est de permettre aux individus et aux familles de prendre le contrôle de leurs finances et d'atteindre leurs objectifs financiers.</p>
+        <p>Chez S_Budget, nous croyons que le bien-être financier est essentiel pour une vie sans stress et épanouissante. Notre équipe d'experts financiers et de technologues a développé un outil de budget convivial et intuitif qui vous aide à suivre vos revenus, vos dépenses et vos économies.</p>
+        <p>Avec S_Budget, vous pouvez créer des budgets personnalisés, fixer des objectifs financiers, analyser vos habitudes de dépenses et obtenir des informations précieuses sur votre santé financière. Notre objectif est de simplifier le processus de budgétisation et de vous fournir les outils et les connaissances nécessaires pour prendre des décisions financières éclairées.</p>
+        <p>Rejoignez des milliers d'utilisateurs satisfaits qui ont déjà amélioré leur vie financière avec S_Budget. Commencez dès aujourd'hui votre parcours vers la liberté financière !</p>
+    </div>
 
 	<section1 class="container_1">
 		<h2 class="title">
@@ -83,7 +81,45 @@ session_start();
 	</section1>
 
 
+    <button onclick="showDetails()">En savoir plus sur le projet</button>
 
+<script>
+    function showDetails() {
+        var x = document.getElementById("projectDetails");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+    <section id="projectDetails">
+        <h2>Notre projet</h2>
+        <hr>
+        <p>Notre projet visait à créer un site Web qui aide les étudiants à gérer leur argent efficacement. Cela a impliqué la compréhension des comportements financiers des utilisateurs, le développement d'un site pour le suivi des dépenses et des revenus intuitif et facile à utiliser.</p>
+
+        <h3>Difficultés rencontrées</h3>
+        <hr>
+        <p>Notre plus grand défi a été de créer une applicationpour la première fois facile à utiliser et qui fournit des informations financières sur la moyenne de la population. Nous avons également dû apprendre à travailler ensemble en tant qu'équipe et à répartir efficacement le travail entre nous, Chokri c'est occupé des bons plans et avantages pour les utilisateurs, Lucas de la base de donnée du site et enfin Hugo, Wassim et Joe pour la création de tout le site web.</p>
+
+        <h3>Leçons apprises</h3>
+        <hr>
+        <p>Nous avons beaucoup appris sur la façon de travailler ensemble en tant qu'équipe et sur la façon de surmonter les défis ensemble, notamment une contrainte de temps et réussir à mettre toutes nos parties en commun. Nous avons également appris beaucoup sur comment fonctionne ainsi que crée un site web et nous espérons que notre site sera utile à nos utilisateurs.</p>
+    </section>
+
+    <footer>
+
+        <p>Suivez-nous sur les réseaux :</p>
+        <div class="social-media-icons">
+            <a href="https://www.facebook.com/EfreiParis/?locale=fr_FR" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/Efrei_Paris" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/efrei_paris" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+
+
+        <p>&copy; 2023 S_Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
+    </footer>
 
 </body>
 </html>

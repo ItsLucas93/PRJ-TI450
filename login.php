@@ -94,5 +94,18 @@ session_start();
         <br><br><br><br><br><br><br><br><br><br>
 		<p>Vous n'avez pas de compte ? <a href="signup.html">Inscrivez-vous ici</a></p>
 	</section>
+
+<footer>
+
+    <p>Suivez-nous sur les réseaux :</p>
+    <div class="social-media-icons">
+        <a href="https://www.facebook.com/EfreiParis/?locale=fr_FR" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/Efrei_Paris" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/efrei_paris" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+
+
+    <p>&copy; 2023 S_Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
+</footer>
 </body>
 </html>
