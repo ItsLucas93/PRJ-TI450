@@ -11,12 +11,16 @@ session_start();
 
 <html lang="fr">
 <head>
-    <title>Votre Budget</title>
+    <title>S.BUDGET - Votre Budget</title>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="media/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="media/favicon.ico" sizes="32x32">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
     <link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/script.js"></script>
 </head>
@@ -35,7 +39,8 @@ session_start();
         </ul>
         <div class="dummy-nav-item"></div>
         <div class="nav-right">
-            <a href="login.php">Connexion / Inscription</a>
+            <?php if(!isset($user_data['user_username'])) echo '<a href="login.php">Connexion / Inscription</a>' ?>
+            <?php if(isset($user_data['user_username'])) {echo '<div class="dropdown"><button class="dropbtn"> Utilisateur : '. $user_data['user_username'] . '</button><div class="dropdown-content"><a href="profile.php">Votre Profil</a><a href="logout.php">Déconnexion</a></div></div>';} ?>
         </div>
     </nav>
 </header>
