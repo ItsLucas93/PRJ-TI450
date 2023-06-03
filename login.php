@@ -70,7 +70,7 @@ session_start();
         </ul>
         <div class="dummy-nav-item"></div>
         <div class="nav-right">
-            <a href="login.php">Connexion / Inscription</a>
+            <a href="signup.php">Connexion / Inscription</a>
         </div>
     </nav>
 </header>
