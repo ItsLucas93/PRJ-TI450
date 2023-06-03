@@ -15,8 +15,62 @@ session_start();
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+
+<style>
+    #projectDetails {
+        display: none;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+        max-width: 800px;
+    }
+    #projectDetails h2, #projectDetails h3 {
+        color: #007BFF;
+        padding: 10px;
+    }
+    #projectDetails p {
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #666;
+        text-align: center;
+    }
+    #projectDetails hr {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+    button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+</style>
+
+<script>
+    function showDetails() {
+        var x = document.getElementById("projectDetails");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
 <body>
 <header>
     <nav>
@@ -82,17 +136,6 @@ session_start();
 
 
     <button onclick="showDetails()">En savoir plus sur le projet</button>
-
-<script>
-    function showDetails() {
-        var x = document.getElementById("projectDetails");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-</script>
 
     <section id="projectDetails">
         <h2>Notre projet</h2>
