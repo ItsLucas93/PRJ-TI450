@@ -30,30 +30,28 @@ session_start();
 	<meta charset="UTF-8">
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="S_Budget.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
 
 </head>
 <body>
 	<header>
 		<nav>
 			<div class="nav-logo">
-				<a href="Accueil.html"><img src="Bannière SBUDGET blanc fond transparent 1100_400.png" alt="Logo"></a>
+				<a href="index.php"><img src="media/logo_Header_1100x400.png" alt="Logo"></a>
 			</div>
             <div class="dummy-nav-item"></div>
             <ul>
-                <li class="current"><a href="Accueil.html">Accueil</a></li>
-                <li><a href="Votre_Budget.html">Votre Budget</a></li>
-                <li><a href="A_propos.html">À propos</a></li>
-                <li><a href="Contact.html">Contact</a></li>
+                <li class="current"><a href="index.php">Accueil</a></li>
+                <li><a href="yourbudget.php">Votre Budget</a></li>
+                <li><a href="about.php">À propos</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
             <div class="dummy-nav-item"></div>
             <div class="nav-right">
-                <a href="Connexion.html">Connexion / Inscription</a>
+                <a href="login.php">Connexion / Inscription</a>
             </div>
 		</nav>
 	</header>
@@ -61,7 +59,7 @@ session_start();
 		<section id="intro">
 			<h1>S_Budget</h1>
 			<p>Un outil simple pour gérer votre budget mensuel.</p>
-			<a href="Votre_Budget.html">Commencer</a>
+			<a href="yourbudget.php">Commencer</a>
 	</section>
 
 
@@ -71,19 +69,19 @@ session_start();
 				<h2>Fonctionnalités</h2>
 
 				<div>
-					<img src="Image_Accueil1.png" alt="Gestion des dépenses">
+					<img src="media/image_index1.png" alt="Gestion des dépenses">
 					<h3>Gestion des dépenses</h3>
 					<p>Gérez facilement vos dépenses et suivez où va votre argent.</p>
 				</div>
 
 				<div>
-					<img src="Image_Accueil2.png" alt="Suivi des économies">
+					<img src="media/image_index2.png" alt="Suivi des économies">
 					<h3>Suivi des économies</h3>
 					<p>Suivez vos économies et voyez comment elles augmentent avec le temps.</p>
 				</div>
 
 				<div>
-					<img src="Image_Accueil3.png" alt="Planification budgétaire">
+					<img src="media/image_index3.png" alt="Planification budgétaire">
 					<h3>Planification budgétaire</h3>
 					<p>Planifiez votre budget et fixez des objectifs pour vous aider à atteindre vos objectifs financiers.</p>
 				</div>
@@ -163,7 +161,7 @@ session_start();
 		<section id="contact">
 			<h2>Contactez-nous</h2>
 			<p>Si vous avez des questions, des commentaires ou des préoccupations, n'hésitez pas à nous contacter. Nous sommes là pour vous aider.</p>
-			<p><a href="contact.html">Cliquez ici pour nous contacter</a></p>
+			<p><a href="contact.php">Cliquez ici pour nous contacter</a></p>
 		</section>
 
 
@@ -172,7 +170,7 @@ session_start();
 
 			<section id="cta">
 				<h2>Prêt à prendre le contrôle de votre budget ?</h2>
-				<a href="Inscription.html" style="background-color: white; padding: 10px; color: black; text-decoration: none;">Commencer maintenant</a>
+				<a href="signup.php" style="background-color: white; padding: 10px; color: black; text-decoration: none;">Commencer maintenant</a>
 			</section>
 
 	<footer>
