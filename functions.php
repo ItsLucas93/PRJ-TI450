@@ -8,7 +8,6 @@ function check_login($con) {
 
         $result = mysqli_query($con, $query);
         if($result && mysqli_num_rows($result) > 0) {
-            print_r($result);
             return mysqli_fetch_assoc($result);
         }
     }
