@@ -30,11 +30,27 @@ session_start();
                 header("Location: signup.php");
             } else {
                 $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: green; text-align: center; padding: 2px; width: 100vw;"><b>Inscription terminée</b>. Veuillez vous connecter.</p>';
+
+                // Mail de confirmation
+                $name = $user_username;
+                $email = $user_email;
+
+                $to = $email . ', lucas@luxas.web-edu.fr';
+                $subject = "Confirmation d'inscription : S.BUDGET - " . $name;
+                $message = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Confirmation d'inscription</title><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'><style>body{font-family:'Playfair Display',sans-serif;}section{padding:5px;background-color:#f2f2f2;}nav{background-color:#333;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 20px;}.nav-logo img{height:50px;}.nav-logo,.nav-right{flex:0 0 200px;}.dummy-nav-item{flex:0 0 200px;background-image:image();}nav ul{margin:0;padding:0;list-style-type:none;display:flex;justify-content:center;flex-grow:1;}nav li{display:inline-block;margin-right:20px;}nav a{display:block;padding:10px;color:#fff;text-decoration:none;}footer{background-color:#333;padding:20px;color:#fff;text-align:center;clear:both;}footer p{margin-bottom:10px;}.social-media-icons{margin-top:10px;}.social-media-icons i{margin-right:10px;color:#fff;font-size:20px;}}</style></head><body><header><nav><div class='nav-logo'><a href='index.php'>S.Budget</a></div><div class='nav-right'><a href='https://luxas.web-edu.fr/login.php'>Connexion</a></div></nav></header><section><h1>Confirmation d'inscription</h1><p>Vous vous êtes inscrit avec succès sur notre site S.Budget. Commencez dès maintenant par compléter votre <a href='https://luxas.web-edu.fr/profile.php'>profil</a>.</p></section><footer><p>Suivez-nous sur les réseaux :</p><div class='social-media-icons'><a href='https://www.facebook.com/EfreiParis/?locale=fr_FR' target='_blank'><i class='fab fa-facebook-f'></i></a><a href='https://twitter.com/Efrei_Paris' target='_blank'><i class='fab fa-twitter'></i></a><a href='https://www.instagram.com/efrei_paris' target='_blank'><i class='fab fa-instagram'></i></a></div><p>&copy; 2023 S.Budget - <a href='https://github.com/ItsLucas93' target='_blank' style='color: inherit; text-decoration: underline; text-decoration-color: white;'>Tous droits réservés</a>.</p></footer></body></html>";
+                $headers = 'From: ' . 'lucas@luxas.web-edu.fr' . "\r\n";
+                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+                $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+
+                mail($to, $subject, $message, $headers);
+
                 header("Location: login.php");
             }
             die;
         } else {
             $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: red; text-align: center; padding: 2px; width: 100vw;">Informations non valides. Veuillez réessayer.</p>';
+            header("Location: signup.php");
+            die;
         }
     }
 
