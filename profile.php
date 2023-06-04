@@ -118,9 +118,9 @@ echo $message;
     <p><strong>E-mail :</strong> <?php echo $user_data['user_email']; ?></p>
     <p><strong>Code postal :</strong> <?php echo $user_data_profil['zipcode']; ?></p>
     <p><strong>Âge :</strong> <?php echo $user_data_profil['age']; ?></p>
-    <p><strong>Sexe :</strong> <?php echo $user_data_profil['gender']; ?></p>
-    <p><strong>Type de logement :</strong> <?php echo $user_data_profil['housing_type']; ?></p>
-    <p><strong>État matrimonial :</strong> <?php echo $user_data_profil['marital_status']; ?></p>
+    <p><strong>Sexe :</strong> <?php if($user_data_profil['gender'] == 'M') {echo 'Masculin';} elseif ($user_data_profil['gender'] == 'F') {echo 'Féminin';} else {echo 'Autre';}?></p>
+    <p><strong>Type de logement :</strong> <?php if($user_data_profil['housing_type'] == 'P') echo 'Propriétaire'; elseif($user_data_profil['housing_type'] == 'L') echo 'Locataire'; elseif($user_data_profil['housing_type'] == 'O') echo 'Autre';?></p>
+    <p><strong>État matrimonial :</strong> <?php if($user_data_profil['marital_status'] == 'C') {echo 'Célibataire';}elseif($user_data_profil['marital_status'] == 'M') {echo 'Marié/Mariée';}elseif($user_data_profil['marital_status'] == 'D') {echo 'Divorcé/Divorcée';}elseif($user_data_profil['marital_status'] == 'V') {echo 'Veuf/Veuve';}elseif($user_data_profil['marital_status'] == 'O') {echo 'Autre';}?></p>
     <button id="modifier_profil_bouton">Modifier mon profil</button>
 </section>
 
@@ -131,19 +131,33 @@ echo $message;
         <input type="text" id="username" name="username" value="<?php // echo $user_data['user_username']; ?>">-->
 
         <label for="postal_code">Code postal :</label>
-        <input type="text" id="postal_code" name="postal_code" value="<?php echo $user_data_profil['zipcode']; ?>">
+        <input type="text" id="postal_code" name="postal_code" pattern="[0-9]{5}" placeholder="Entrez un code postal" value="<?php echo $user_data_profil['zipcode']; ?>">
 
         <label for="age">Âge :</label>
-        <input type="number" id="age" name="age" value="<?php echo $user_data_profil['age']; ?>">
+        <input type="number" id="age" name="age" placeholder="Entrez votre âge" value="<?php echo $user_data_profil['age']; ?>">
 
         <label for="gender">Sexe :</label>
-        <input type="text" id="gender" name="gender" value="<?php echo $user_data_profil['gender']; ?>">
+        <select id="gender" name="gender">
+            <option value="M" <?php if($user_data_profil['gender'] == 'M') echo 'selected'; ?>>Masculin</option>
+            <option value="F" <?php if($user_data_profil['gender'] == 'F') echo 'selected'; ?>>Feminin</option>
+            <option value="O" <?php if($user_data_profil['gender'] == 'O') echo 'selected'; ?>>Autre</option>
+        </select>
 
         <label for="housing_type">Type de logement :</label>
-        <input type="text" id="housing_type" name="housing_type" value="<?php echo $user_data_profil['housing_type']; ?>">
+        <select id="housing_type" name="housing_type">
+            <option value="P" <?php if($user_data_profil['housing_type'] == 'P') echo 'selected'; ?>>Propriétaire</option>
+            <option value="L" <?php if($user_data_profil['housing_type'] == 'L') echo 'selected'; ?>>Locataire</option>
+            <option value="O" <?php if($user_data_profil['housing_type'] == 'O') echo 'selected'; ?>>Autre</option>
+        </select>
 
         <label for="marital_status">État matrimonial :</label>
-        <input type="text" id="marital_status" name="marital_status" value="<?php echo $user_data_profil['marital_status']; ?>">
+        <select id="marital_status" name="marital_status">
+            <option value="C" <?php if($user_data_profil['marital_status'] == 'C') echo 'selected'; ?>>Célibataire</option>
+            <option value="M" <?php if($user_data_profil['marital_status'] == 'M') echo 'selected'; ?>>Marié/Mariée</option>
+            <option value="D" <?php if($user_data_profil['marital_status'] == 'D') echo 'selected'; ?>>Divorcé/Divorcée</option>
+            <option value="V" <?php if($user_data_profil['marital_status'] == 'V') echo 'selected'; ?>>Veuf/Veuve</option>
+            <option value="O" <?php if($user_data_profil['marital_status'] == 'O') echo 'selected'; ?>>Autre</option>
+        </select>
 
         <input type="submit" value="Mettre à jour">
     </form>
