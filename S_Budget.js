@@ -28,6 +28,7 @@ function recup_depenses(event) {
 window.onload = function() {
     var btnCalculerDepenses = document.getElementById('calculer_depenses');
     var btnCalculerRevenus = document.getElementById('calculer_revenus');
+
 }
 
 
@@ -342,7 +343,54 @@ function repereRevenusTotal(totalRevenus, revenusData) {
 
 
 
+
+var ctx = document.getElementById('zoneChart').getContext('2d');
+
+var zoneChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [{
+            label: 'Depenses_max',
+            data: [70, 120, 100, 140, 128, 113, 101, 116, 130, 122, 100, 62],
+            fill: '+1',
+            borderColor: 'red',
+            borderDash: [5, 5]
+        }, {
+            label: 'Depenses_min',
+            data: [50, 98, 85, 113, 101, 86, 71, 83, 99, 93, 80, 52],
+            fill: '-1',
+            backgroundColor: 'rgba(0,0,0,0.1)',
+            borderColor: 'blue',
+            borderDash: [5, 5]
+        }, {
+            label: 'Vos dépenses',
+            data: [59, 103, 87, 120, 124, 103, 80, 90, 110, 120, 95, 61], // new data for the third dataset
+            fill: false, // don't fill the area under this line
+            borderColor: 'black' // color of the third line
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     repereRevenusTotal('repereRevenuesChart');
     repereDepensesTotal('repereDepensesChart');
+
+
+    var ctx = document.getElementById('zoneChart').getContext('2d');
 });
