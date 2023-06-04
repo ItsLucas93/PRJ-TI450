@@ -1,0 +1,77 @@
+/** --- Events ** --- **/
+
+section {
+    margin-bottom: 5vh;
+    align-items: center;
+}
+
+.events {
+    position: relative;
+    margin: 1vh 2vw;
+    height: 15vh;
+    width: 90vw;
+    padding: 2vw;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.righttext:hover, .lefttext:hover {
+    border: solid 1px black;
+}
+
+.righttext, .lefttext {
+    /** Bloc **/
+    width: auto;
+    max-width: 50vw;
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
+    /** Balises internes **/
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    padding : 2px 20px;
+}
+
+.leftimg, .rightimg {
+    position: relative;
+    width: 350px;
+    height: 200px;
+}
+
+.events > img {
+    max-width: 350px;
+    min-width: 200px;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+.righttext {
+    text-align: start;
+    right: 4vw;
+}
+
+.lefttext {
+    text-align: end;
+    left: 4vw;
+}
+
+.righttext h2, .lefttext h2 {
+    margin-top: 0;
+    color: #32d1f8;
+}
+
+.righttext h4, .lefttext h4 {
+    margin-bottom: 4px;
+    font-style: italic;
+}
+
+
+.righttext p, .lefttext p {
+    margin-top: 0px;
+}

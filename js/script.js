@@ -37,7 +37,7 @@ window.onload = function() {
 
 function affiche_barChart(depenses) {
     var ctx = document.getElementById('barChart').getContext('2d');
-    
+
     const existingValues = [400, 180, 320, 140, 70, 120, 80, 110, 60]; // Remplacer par les valeurs moyennes réelles
 
     // Si un graphique existe déjà, le détruire avant de créer un nouveau
@@ -66,7 +66,7 @@ function affiche_barChart(depenses) {
             responsive: true,
             scales: {
                 x: { },
-                y: { 
+                y: {
                     beginAtZero: true
                 }
             }
@@ -152,13 +152,13 @@ function repereDepensesTotal(totalDepenses) {
                 borderColor: 'rgba(255,99,132,1)',
                 borderWidth: 1
             },
-            {
-                label: 'Dépenses détaillées',
-                data: depensesDetaillees,  // Utilisez la liste de dépenses détaillées ici
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
+                {
+                    label: 'Dépenses détaillées',
+                    data: depensesDetaillees,  // Utilisez la liste de dépenses détaillées ici
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
         },
         options: {
             scales: {
@@ -200,7 +200,7 @@ function recup_revenus(event) {
     };
 
     var totalRevenus = Object.values(revenusData).reduce((acc, val) => acc + val, 0);
-    
+
     var totalRevenusElement = document.getElementById('totalRevenus');
     if (totalRevenusElement) {
         totalRevenusElement.innerText = "Total Revenus : " + totalRevenus;
@@ -281,7 +281,7 @@ function affiche_barChart_revenus(revenusData) {
             responsive: true,
             scales: {
                 x: { },
-                y: { 
+                y: {
                     beginAtZero: true
                 }
             }
