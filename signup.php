@@ -26,15 +26,15 @@ session_start();
 
             $result = mysqli_query($con, $query);
             if (!$result) {
-                $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;"><b>Identifiant déjà existant</b>. Veuillez réessayer.</p>';
+                $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: red; text-align: center; padding: 2px; width: 100vw;"><b>Identifiant déjà existant</b>. Veuillez réessayer.</p>';
                 header("Location: signup.php");
             } else {
-                $_SESSION['message'] = '<p style="color: green; text-align: center; padding: 2px; width: 100vw;"><b>Inscription terminée</b>. Veuillez vous connecter.</p>';
+                $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: green; text-align: center; padding: 2px; width: 100vw;"><b>Inscription terminée</b>. Veuillez vous connecter.</p>';
                 header("Location: login.php");
             }
             die;
         } else {
-            $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Informations non valides. Veuillez réessayer.</p>';
+            $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: red; text-align: center; padding: 2px; width: 100vw;">Informations non valides. Veuillez réessayer.</p>';
         }
     }
 

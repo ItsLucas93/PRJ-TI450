@@ -35,17 +35,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                     }
                     else {
                         // echo "Wrong Password";
-                        $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
+                        $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
                     }
                 }
                 else {
                     // echo "Wrong Username";
-                    $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
+                    $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
                 }
             }
         } else {
             // echo "Please enter valid information";
-            $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
+            $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
         }
     }
 
