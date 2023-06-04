@@ -158,7 +158,7 @@ session_start();
 
 			<section id="cta">
 				<h2>Prêt à prendre le contrôle de votre budget ?</h2>
-				<a href="signup.php" style="background-color: white; padding: 10px; color: black; text-decoration: none;">Commencer maintenant</a>
+				<a href="<?php if(!isset($user_data['user_username'])) { echo "login.php";} else {echo "yourbudget.php";}?>" style="background-color: white; padding: 10px; color: black; text-decoration: none;">Commencer maintenant</a>
 			</section>
 
 	<footer>
