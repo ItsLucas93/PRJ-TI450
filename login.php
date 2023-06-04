@@ -34,15 +34,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                         die;
                     }
                     else {
-                        echo "Wrong Password";
+                        // echo "Wrong Password";
+                        $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
                     }
                 }
                 else {
-                    echo "Wrong Username";
+                    // echo "Wrong Username";
+                    $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
                 }
             }
         } else {
-            echo "Please enter valid information";
+            // echo "Please enter valid information";
+            $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Identifiants non valides. Veuillez réessayer.</p>';
         }
     }
 
