@@ -25,13 +25,10 @@ function recup_depenses(event) {
     affiche_barChart(depenses);
 }
 
-window.onload = function() {
+window.onload = function () {
     var btnCalculerDepenses = document.getElementById('calculer_depenses');
     var btnCalculerRevenus = document.getElementById('calculer_revenus');
 }
-
-
-
 
 
 function affiche_barChart(depenses) {
@@ -64,7 +61,7 @@ function affiche_barChart(depenses) {
         options: {
             responsive: true,
             scales: {
-                x: { },
+                x: {},
                 y: {
                     beginAtZero: true
                 }
@@ -83,7 +80,9 @@ function affiche_camembert(depenses) {
     }
 
     // Calculer le total des dépenses
-    var totalDepenses = Object.values(depenses).reduce(function(a, b) { return parseFloat(a) + parseFloat(b); }, 0);
+    var totalDepenses = Object.values(depenses).reduce(function (a, b) {
+        return parseFloat(a) + parseFloat(b);
+    }, 0);
 
     myPieChart = new Chart(ctx, {
         type: 'pie',
@@ -170,19 +169,7 @@ function repereDepensesTotal(totalDepenses) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 var revenus = [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200];
-
 
 
 // Fonction pour récupérer les revenus
@@ -245,7 +232,6 @@ function affiche_camembert_revenus(revenusData, totalRevenus) {
 }
 
 
-
 var myRevenuesPieChart, myRevenuesLineChart, myRevenuesBarChart;
 
 // Fonction pour afficher le graphique à barres des revenus
@@ -279,7 +265,7 @@ function affiche_barChart_revenus(revenusData) {
         options: {
             responsive: true,
             scales: {
-                x: { },
+                x: {},
                 y: {
                     beginAtZero: true
                 }
@@ -333,13 +319,6 @@ function repereRevenusTotal(totalRevenus, revenusData) {
         }
     });
 }
-
-
-
-
-
-
-
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
