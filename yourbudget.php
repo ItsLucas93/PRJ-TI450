@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-    include("conncetion.php");
+    include("connection.php");
     include("functions.php");
 
     $user_data = check_login($con);
@@ -10,6 +10,7 @@ session_start();
         $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Pour accéder à <b>Votre budget</b>, veuillez vous connecter !</p>';
         header("Location: login.php");
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +27,7 @@ session_start();
 
     <link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/script.js"></script>
 </head>
@@ -56,7 +58,7 @@ session_start();
     <div class="left">
         <section id="form">
             <h2>Entrez vos dépenses mensuelles</h2>
-            <form onsubmit="recup_depenses(event);" id="myForm">
+            <form method="post" onsubmit="recup_depenses(event);" id="myForm">
 
                 <label for="loyer">Loyer :</label>
                 <input type="number" id="loyer" name="loyer" required><br>
@@ -96,7 +98,7 @@ session_start();
     <div class="right">
         <section id="form">
             <h2>Entrez vos revenus mensuels</h2>
-            <form onsubmit="recup_revenus(event);">
+            <form method="post" onsubmit="recup_revenus(event);">
 
                 <label for="salaire">Salaire net :</label>
                 <input type="number" id="salaire" name="salaire" required><br>
