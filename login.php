@@ -7,6 +7,7 @@ session_start();
     $user_data = check_login($con);
     if ($user_data != false) {
         header("Location: index.php");
+        die;
     }
 
 
