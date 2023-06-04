@@ -94,42 +94,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </nav>
 </header>
+<div>
+    <section id="profil">
+        <h2>Vos informations</h2>
+        <p><strong>Identifiant :</strong> <?php echo $user_data['user_username']; ?></p>
+        <p><strong>E-mail :</strong> <?php echo $user_data['user_email']; ?></p>
+        <p><strong>Code postal :</strong> <?php echo $user_data_profil['zipcode']; ?></p>
+        <p><strong>Âge :</strong> <?php echo $user_data_profil['age']; ?></p>
+        <p><strong>Sexe :</strong> <?php echo $user_data_profil['gender']; ?></p>
+        <p><strong>Type de logement :</strong> <?php echo $user_data_profil['housing_type']; ?></p>
+        <p><strong>État matrimonial :</strong> <?php echo $user_data_profil['marital_status']; ?></p>
+        <button id="modifier_profil_bouton">Modifier mon profil</button>
+    </section>
 
-<section id="profil">
-    <h2>Vos informations</h2>
-    <p><strong>Nom :</strong> <?php echo $user_data['user_username']; ?></p>
-    <p><strong>Code postal :</strong> <?php echo $user_data_profil['zipcode']; ?></p>
-    <p><strong>Âge :</strong> <?php echo $user_data_profil['age']; ?></p>
-    <p><strong>Sexe :</strong> <?php echo $user_data_profil['gender']; ?></p>
-    <p><strong>Type de logement :</strong> <?php echo $user_data_profil['housing_type']; ?></p>
-    <p><strong>État matrimonial :</strong> <?php echo $user_data_profil['marital_status']; ?></p>
-    <button id="modifier_profil_bouton">Modifier mon profil</button>
-</section>
+    <section id="modifier_profil">
+        <h2>Modifier vos informations</h2>
+        <form method="post">
+            <!-- <label for="username">Nom :</label>
+            <input type="text" id="username" name="username" value="<?php // echo $user_data['user_username']; ?>">-->
 
-<section id="modifier_profil">
-    <h2>Modifier vos informations</h2>
-    <form method="post">
-        <!-- <label for="username">Nom :</label>
-        <input type="text" id="username" name="username" value="<?php // echo $user_data['user_username']; ?>">-->
+            <label for="postal_code">Code postal :</label>
+            <input type="text" id="postal_code" name="postal_code" value="<?php echo $user_data_profil['zipcode']; ?>">
 
-        <label for="postal_code">Code postal :</label>
-        <input type="text" id="postal_code" name="postal_code" value="<?php echo $user_data_profil['zipcode']; ?>">
+            <label for="age">Âge :</label>
+            <input type="number" id="age" name="age" value="<?php echo $user_data_profil['age']; ?>">
 
-        <label for="age">Âge :</label>
-        <input type="number" id="age" name="age" value="<?php echo $user_data_profil['age']; ?>">
+            <label for="gender">Sexe :</label>
+            <input type="text" id="gender" name="gender" value="<?php echo $user_data_profil['gender']; ?>">
 
-        <label for="gender">Sexe :</label>
-        <input type="text" id="gender" name="gender" value="<?php echo $user_data_profil['gender']; ?>">
+            <label for="housing_type">Type de logement :</label>
+            <input type="text" id="housing_type" name="housing_type" value="<?php echo $user_data_profil['housing_type']; ?>">
 
-        <label for="housing_type">Type de logement :</label>
-        <input type="text" id="housing_type" name="housing_type" value="<?php echo $user_data_profil['housing_type']; ?>">
+            <label for="marital_status">État matrimonial :</label>
+            <input type="text" id="marital_status" name="marital_status" value="<?php echo $user_data_profil['marital_status']; ?>">
 
-        <label for="marital_status">État matrimonial :</label>
-        <input type="text" id="marital_status" name="marital_status" value="<?php echo $user_data_profil['marital_status']; ?>">
-
-        <input type="submit" value="Mettre à jour">
-    </form>
-</section>
+            <input type="submit" value="Mettre à jour">
+        </form>
+    </section>
+</div>
 <script>
     document.getElementById("modifier_profil_bouton").addEventListener("click", function() {
         document.getElementById("modifier_profil").style.display = "block";

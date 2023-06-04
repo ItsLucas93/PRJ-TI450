@@ -5,6 +5,33 @@ session_start();
     include("functions.php");
 
     $user_data = check_login($con);
+
+
+// Send mail when you create an account or send message in contact
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['nom'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    $to = $email . ', lucas@luxas.web-edu.fr';
+    $subject = 'Contact : S.BUDGET - ' . $name;
+    $message = 'Hello ' . $name . ', nous avons bien reçu votre message !<br><br>Message :<br><i>' . $message . '</i><br><br><br>© S.Budget 2023';
+    $headers = 'From: ' . 'lucas@luxas.web-edu.fr' . "\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+
+
+    // send email
+    if (mail($to, $subject, $message, $headers)) {
+        $_SESSION['message'] = '<p style="color: green; text-align: center; padding: 2px; width: 100vw;"><b>Message envoyé avec succès</b>. Vous trouverez une copie dans votre boîte mail.</p>';
+    } else {
+        $_SESSION['message'] = "<p style='color: red; text-align: center; padding: 2px; width: 100vw;'>Echec de l'envoi. Veuillez réessayer.</p>";
+    }
+    header("Location: contact.php");
+    die;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -43,16 +70,29 @@ session_start();
     </nav>
 </header>
 
+<?php
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']);
+} else {
+    $message = '';
+}
+
+echo $message;
+
+?>
+
 <section id="contact">
     <h1>Contactez-nous</h1>
     <p>N'hésitez pas à nous contacter pour toute question, suggestion ou demande d'assistance. Nous sommes là pour vous aider.</p>
 
-    <form action="send_mail.php" method="post">
+    <form method="post">
         <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required>
+        <input type="text" id="nom" name="nom" value="<?php if(isset($user_data['user_username'])) echo $user_data['user_username']?>" required>
 
         <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" value="<?php if(isset($user_data['user_username'])) echo $user_data['user_email']?>" required>
 
         <br><br>
 
