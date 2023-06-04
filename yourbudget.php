@@ -162,17 +162,18 @@ echo $message;
 </div>
     <input type="submit" value="Sauvegarder" id="submit">
 
+    <canvas id="repereRevenusChart"></canvas>
 
-<canvas id="repereRevenusChart"></canvas>
+    <canvas id="repereDepensesChart"></canvas>
 
-<canvas id="repereDepensesChart"></canvas>
+    <h3>Dépenses :</h3>
+    <canvas id="barChart"></canvas>
 
+    <h3>Revenus :</h3>
+    <canvas id="revenuesBarChart"></canvas>
 
-<canvas id="barChart"></canvas>
-
-<canvas id="revenuesBarChart"></canvas>
-
-<canvas id="zoneChart"></canvas>
+    <h3>Prévisions sur les prochains mois :</h3>
+    <canvas id="zoneChart"></canvas>
 
 </form>
 

@@ -100,7 +100,7 @@ $row = mysqli_fetch_assoc($result);
     $deals = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     if (empty($deals)) {
-        echo "<h4>Pas de bon plans disponible en fonction de vos paramètres :c</h4>";
+        echo "";
     }else {
 
         // Output deals as per the HTML template
@@ -144,7 +144,7 @@ $row = mysqli_fetch_assoc($result);
     $deals = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     if (empty($deals)) {
-        echo "<h4>Pas de bon plans disponible en fonction de vos paramètres :c</h4>";
+        echo "";
     }else {
 
         // Output deals as per the HTML template
