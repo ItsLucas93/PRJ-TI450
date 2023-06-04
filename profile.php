@@ -189,7 +189,7 @@ echo $message;
         <tbody>
         <?php
         // Récupérer les données de l'utilisateur spécifique à partir de la base de données
-        $query = "SELECT * FROM user_data WHERE user_id = " . $user_data['user_id'] . " ORDER BY time";
+        $query = "SELECT * FROM user_data WHERE user_id = " . $user_data['user_id'] . " ORDER BY time DESC";
         $result = mysqli_query($con, $query);
 
         // Afficher les données dans le tableau HTML
