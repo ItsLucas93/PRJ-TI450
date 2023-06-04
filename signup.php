@@ -24,11 +24,17 @@ session_start();
             //echo($user_username. " " . $user_email . " " . $user_password . " " . $user_id);
             $query = "INSERT INTO user (user_id, user_username, user_email, user_password) VALUES ('$user_id', '$user_username', '$user_email', '$user_password')";
 
-            mysqli_query($con, $query);
-            header("Location: login.php");
+            $result = mysqli_query($con, $query);
+            if (!$result) {
+                $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;"><b>Identifiant déjà existant</b>. Veuillez réessayer.</p>';
+                header("Location: signup.php");
+            } else {
+                $_SESSION['message'] = '<p style="color: green; text-align: center; padding: 2px; width: 100vw;"><b>Inscription terminée</b>. Veuillez vous connecter.</p>';
+                header("Location: login.php");
+            }
             die;
         } else {
-            echo "Please enter valid information";
+            $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Informations non valides. Veuillez réessayer.</p>';
         }
     }
 
@@ -67,6 +73,19 @@ session_start();
         </div>
     </nav>
 </header>
+
+<?php
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']);
+} else {
+    $message = '';
+}
+
+echo $message;
+
+?>
 
 	<section id="form">
 		<h2>Inscrivez vous:</h2>
