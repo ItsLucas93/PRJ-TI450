@@ -59,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/script.js"></script>
 </head>
 <body>
 <header>
@@ -173,6 +172,8 @@ echo $message;
 
 <canvas id="revenuesBarChart"></canvas>
 
+<canvas id="zoneChart"></canvas>
+
 </form>
 
 <footer>
@@ -189,6 +190,7 @@ echo $message;
 </footer>
 </body>
 
+<script src="js/script.js"></script>
 
 </html>
 
