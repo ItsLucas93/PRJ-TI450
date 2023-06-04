@@ -541,3 +541,9 @@ canvas {
 	display: block;
 }
 
+.current {
+	position: relative;
+	text-decoration: underline;
+	text-decoration-color: white;
+	text-underline-offset: 5px;
+}

@@ -74,14 +74,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         </div>
         <div class="dummy-nav-item"></div>
         <ul>
-            <li class="current"><a href="index.php">Accueil</a></li>
+            <li><a href="index.php">Accueil</a></li>
             <li><a href="yourbudget.php">Votre Budget</a></li>
-            <li><a href="about.php">À propos</a></li>
+            <li><a href="yourdeals.php">Vos bon plans</a></li>
             <li><a href="contact.php">Contact</a></li>
+            <li><a href="about.php">À propos</a></li>
         </ul>
         <div class="dummy-nav-item"></div>
         <div class="nav-right">
-            <a href="signup.php">Connexion / Inscription</a>
+            <a href="signup.php"> <span class="current">Connexion</span> / Inscription</a>
         </div>
     </nav>
 </header>
