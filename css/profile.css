@@ -1,0 +1,17 @@
+#profil, #modifier_profil {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+#modifier_profil {
+    display: none;
+}
+#modifier_profil form {
+    display: grid;
+    gap: 10px;
+}
+
+#modifier_profil label {
+    margin-top: 10px;
+}

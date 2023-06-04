@@ -67,31 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="icon" href="media/favicon.ico" sizes="32x32">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
 
     <link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-
-<style>
-    #profil, #modifier_profil {
-        margin: 20px;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-    }
-    #modifier_profil {
-        display: none;
-    }
-    #modifier_profil form {
-        display: grid;
-        gap: 10px;
-    }
-
-    #modifier_profil label {
-        margin-top: 10px;
-    }
-</style>
 <body>
 
 <header>
@@ -166,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 
-    <p>&copy; 2023 S_Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
+    <p>&copy; 2023 S.Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
 </footer>
 
 </body>

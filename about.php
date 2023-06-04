@@ -15,52 +15,11 @@ session_start();
 
     <link rel="icon" href="media/favicon.ico" sizes="32x32">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/about.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-
-<style>
-    #projectDetails {
-        display: none;
-        margin: 20px auto;
-        padding: 20px;
-        border: 1px solid #333;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        color: #333;
-        text-align: center;
-        max-width: 800px;
-    }
-    #projectDetails h2, #projectDetails h3 {
-        color: #007BFF;
-        padding: 10px;
-    }
-    #projectDetails p {
-        padding: 10px;
-        font-size: 16px;
-        line-height: 1.6;
-        color: #666;
-        text-align: center;
-    }
-    #projectDetails hr {
-        border: 0;
-        height: 1px;
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-    }
-    button {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-</style>
-
 <script>
     function showDetails() {
         var x = document.getElementById("projectDetails");
@@ -97,10 +56,10 @@ session_start();
 <section id="about">
     <div class="container">
         <h2>À propos de nous</h2>
-        <p>Bienvenue sur S_Budget, votre plateforme incontournable pour gérer vos finances personnelles et votre budget de manière efficace. Notre mission est de permettre aux individus et aux familles de prendre le contrôle de leurs finances et d'atteindre leurs objectifs financiers.</p>
-        <p>Chez S_Budget, nous croyons que le bien-être financier est essentiel pour une vie sans stress et épanouissante. Notre équipe d'experts financiers et de technologues a développé un outil de budget convivial et intuitif qui vous aide à suivre vos revenus, vos dépenses et vos économies.</p>
-        <p>Avec S_Budget, vous pouvez créer des budgets personnalisés, fixer des objectifs financiers, analyser vos habitudes de dépenses et obtenir des informations précieuses sur votre santé financière. Notre objectif est de simplifier le processus de budgétisation et de vous fournir les outils et les connaissances nécessaires pour prendre des décisions financières éclairées.</p>
-        <p>Rejoignez des milliers d'utilisateurs satisfaits qui ont déjà amélioré leur vie financière avec S_Budget. Commencez dès aujourd'hui votre parcours vers la liberté financière !</p>
+        <p>Bienvenue sur S.Budget, votre plateforme incontournable pour gérer vos finances personnelles et votre budget de manière efficace. Notre mission est de permettre aux individus et aux familles de prendre le contrôle de leurs finances et d'atteindre leurs objectifs financiers.</p>
+        <p>Chez S.Budget, nous croyons que le bien-être financier est essentiel pour une vie sans stress et épanouissante. Notre équipe d'experts financiers et de technologues a développé un outil de budget convivial et intuitif qui vous aide à suivre vos revenus, vos dépenses et vos économies.</p>
+        <p>Avec S.Budget, vous pouvez créer des budgets personnalisés, fixer des objectifs financiers, analyser vos habitudes de dépenses et obtenir des informations précieuses sur votre santé financière. Notre objectif est de simplifier le processus de budgétisation et de vous fournir les outils et les connaissances nécessaires pour prendre des décisions financières éclairées.</p>
+        <p>Rejoignez des milliers d'utilisateurs satisfaits qui ont déjà amélioré leur vie financière avec S.Budget. Commencez dès aujourd'hui votre parcours vers la liberté financière !</p>
     </div>
 
 	<section1 class="container_1">
@@ -164,7 +123,7 @@ session_start();
         </div>
 
 
-        <p>&copy; 2023 S_Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
+        <p>&copy; 2023 S.Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
     </footer>
 
 </body>
