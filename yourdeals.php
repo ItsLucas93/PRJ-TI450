@@ -51,7 +51,7 @@ if (!isset($user_data['user_username'])) {
 
 <section>
     <div class="events">
-        <img class="leftimg" src="../img/image1.png" alt="event1">
+        <img class="leftimg" src="media/transport.png" alt="event1">
         <div class="righttext">
             <h4>Catégorie</h4>
             <h2>Nom du bon plan</h2>
@@ -65,7 +65,7 @@ if (!isset($user_data['user_username'])) {
             <h2>Nom du bon plan</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec volutpat lacus. Praesent condimentum mauris vel massa consectetur, ac porta lorem aliquet.</p>
         </div>
-        <img class="rightimg" src="../img/image2.png" alt="event1">
+        <img class="rightimg" src="media/transport.png" alt="event1">
     </div>
 </section>
 
