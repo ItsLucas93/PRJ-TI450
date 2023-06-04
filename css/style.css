@@ -83,7 +83,7 @@ label {
     margin-bottom: 10px;
 }
 
-input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="number"], input[type="email"], input[type="password"], #calculer_depenses, #calculer_revenus {
     padding: 5px;
     margin-bottom: 20px;
     border-radius: 3px;

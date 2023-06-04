@@ -23,12 +23,16 @@ function random_num($con, $lenght) {
         $lenght = 5;
     }
 
-    // while (!mysqli_num_rows(mysqli_query($con, "SELECT user_id FROM USER WHERE user_id = '$text' limit 1")) > 0) {
+    do {
+        $text = "";
         $len = rand(4, $lenght);
         for ($i = 0; $i < $len; $i++) {
             $text .= rand(0, 9);
         }
-    //  }
+
+        $result = mysqli_query($con, "SELECT user_id FROM USER WHERE user_id = '$text' limit 1");
+    } while ($result && mysqli_num_rows($result) > 0);
 
     return $text;
+
 }

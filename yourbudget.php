@@ -11,6 +11,36 @@ session_start();
         header("Location: login.php");
     }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $loyer = $_POST['loyer'];
+    $services_publics = $_POST['services_publics'];
+    $alimentation = $_POST['alimentation'];
+    $hygiene = $_POST['hygiene'];
+    $abonnements = $_POST['abonnements'];
+    $assurances = $_POST['assurances'];
+    $transport = $_POST['transport'];
+    $divertissement = $_POST['divertissement'];
+    $autre_depenses = $_POST['autre_depenses'];
+    $salaire = $_POST['salaire'];
+    $aides_sociales = $_POST['aides_sociales'];
+    $bourse = $_POST['bourse'];
+    $investissement = $_POST['investissement'];
+    $locatif = $_POST['locatif'];
+    $autre_revenus = $_POST['autre_revenus'];
+
+    $query = "INSERT INTO user_data (user_id, loyer, servicepublic, alimentation, hygiene, abonnements, assurances, transports, divertissement, autredepense, salaire, aidesociales, bourse, investissements, locatif, autrerevenus) VALUES (" . $user_data['user_id'] . ", '$loyer', '$services_publics', '$alimentation', '$hygiene', '$abonnements', '$assurances', '$transport', '$divertissement', '$autre_depenses', '$salaire', '$aides_sociales', '$bourse', '$investissement', '$locatif', '$autre_revenus')";
+
+    $result = mysqli_query($con, $query);
+    if (!$result) {
+        die('Query Error: ' . mysqli_error($con));
+    } else {
+        $_SESSION['message'] = '<p style="background-color: #f2f2f2; color: green; text-align: center; padding: 2px; width: 100vw;">Désormais enregistré dans votre historique. Vous pouvez consulter dans <a href="profile.php">Votre profil</a>.</p>';
+        header("Location: yourbudget.php");
+        die;
+    }
+    die;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +57,6 @@ session_start();
 
     <link href="https://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/script.js"></script>
 </head>
@@ -52,14 +81,23 @@ session_start();
         </div>
     </nav>
 </header>
+<?php
 
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']);
+} else {
+    $message = '';
+}
 
+echo $message;
+
+?>
+<form method="post">
 <div class="container_2">
     <div class="left">
         <section id="form">
             <h2>Entrez vos dépenses mensuelles</h2>
-            <form method="post" onsubmit="recup_depenses(event);" id="myForm">
-
                 <label for="loyer">Loyer :</label>
                 <input type="number" id="loyer" name="loyer" required><br>
 
@@ -87,8 +125,7 @@ session_start();
                 <label for="autre_depenses">Autre dépenses :</label>
                 <input type="number" id="autre_depenses" name="autre_depenses" required><br>
 
-                <input type="submit" value="Calculer" id="calculer_depenses">
-            </form>
+                <button type="button" id="calculer_depenses" onclick="recup_depenses(event)">Calculer</button>
             <p id="totalDepenses"></p>
         </section>
         <canvas id="depensesChart"></canvas>
@@ -98,8 +135,6 @@ session_start();
     <div class="right">
         <section id="form">
             <h2>Entrez vos revenus mensuels</h2>
-            <form method="post" onsubmit="recup_revenus(event);">
-
                 <label for="salaire">Salaire net :</label>
                 <input type="number" id="salaire" name="salaire" required><br>
 
@@ -118,16 +153,14 @@ session_start();
                 <label for="autre_revenus">Autre revenus :</label>
                 <input type="number" id="autre_revenus" name="autre_revenus" required><br>
 
-                <input type="submit" value="Calculer" id="calculer_revenus">
-
-            </form>
+                <button type="button" id="calculer_depenses" onclick="recup_revenus(event)">Calculer</button>
         </section>
         <canvas id="revenuesChart"></canvas>
 
     </div>
     <div id="total"></div>
-
 </div>
+    <input type="submit" value="Sauvegarder" id="submit">
 
 
 <canvas id="repereRevenusChart"></canvas>
@@ -139,7 +172,7 @@ session_start();
 
 <canvas id="revenuesBarChart"></canvas>
 
-
+</form>
 
 <footer>
 
@@ -153,7 +186,8 @@ session_start();
 
     <p>&copy; 2023 S.Budget - <a href="https://github.com/ItsLucas93" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: white;">Tous droits réservés</a>.</p>
 </footer>
-
 </body>
+
+
 </html>
 

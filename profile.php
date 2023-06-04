@@ -163,9 +163,70 @@ echo $message;
     </form>
 </section>
 
+<section id="historique">
+    <h2>Votre historique des entrées</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Loyer</th>
+            <th>Service Public</th>
+            <th>Alimentation</th>
+            <th>Hygiène</th>
+            <th>Abonnements</th>
+            <th>Assurances</th>
+            <th>Transports</th>
+            <th>Divertissement</th>
+            <th>Autre Dépense</th>
+            <th>Salaire</th>
+            <th>Aide Sociales</th>
+            <th>Bourse</th>
+            <th>Investissements</th>
+            <th>Locatif</th>
+            <th>Autres Revenus</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        // Récupérer les données de l'utilisateur spécifique à partir de la base de données
+        $query = "SELECT * FROM user_data WHERE user_id = " . $user_data['user_id'] . " ORDER BY time";
+        $result = mysqli_query($con, $query);
+
+        // Afficher les données dans le tableau HTML
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td>" . $row['loyer'] . "</td>";
+            echo "<td>" . $row['servicepublic'] . "</td>";
+            echo "<td>" . $row['alimentation'] . "</td>";
+            echo "<td>" . $row['hygiene'] . "</td>";
+            echo "<td>" . $row['abonnements'] . "</td>";
+            echo "<td>" . $row['assurances'] . "</td>";
+            echo "<td>" . $row['transports'] . "</td>";
+            echo "<td>" . $row['divertissement'] . "</td>";
+            echo "<td>" . $row['autredepense'] . "</td>";
+            echo "<td>" . $row['salaire'] . "</td>";
+            echo "<td>" . $row['aidesociales'] . "</td>";
+            echo "<td>" . $row['bourse'] . "</td>";
+            echo "<td>" . $row['investissements'] . "</td>";
+            echo "<td>" . $row['locatif'] . "</td>";
+            echo "<td>" . $row['autrerevenus'] . "</td>";
+            echo "<td>" . $row['time'] . "</td>";
+            echo "</tr>";
+        }
+        ?>
+
+        </tbody>
+    </table>
+
+</section>
+
 <script>
     document.getElementById("modifier_profil_bouton").addEventListener("click", function() {
-        document.getElementById("modifier_profil").style.display = "block";
+        if (document.getElementById("modifier_profil").style.display === "" || document.getElementById("modifier_profil").style.display === "none") {
+            document.getElementById("modifier_profil").style.display = "block";
+        } else {
+            document.getElementById("modifier_profil").style.display = "none";
+        }
     });
 </script>
 
