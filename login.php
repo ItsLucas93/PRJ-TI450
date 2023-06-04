@@ -31,6 +31,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
                     if($user_data['user_password'] === $user_password) {
                         $_SESSION['user_id'] = $user_data['user_id'];
+
+                        $query = "SELECT * FROM user_profile WHERE `user_id` = " . $user_data['user_id'];
+                        $result = mysqli_query($con, $query);
+                        $row = mysqli_fetch_assoc($result);
+                        foreach ($row as $column => $value) {
+                            if ($value === null) {
+                                $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Nous vous conseillions de <b>renseigner votre profile !</b></p>';
+                                header("Location: profile.php");
+                                die;
+                            }
+                        }
+
                         header("Location: index.php");
                         die;
                     }

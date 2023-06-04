@@ -1,5 +1,6 @@
 <?php
 session_start();
+header('Content-Type: text/html; charset=utf-8');
 
 include("connection.php");
 include("functions.php");
@@ -7,10 +8,33 @@ include("functions.php");
 $user_data = check_login($con);
 
 if (!isset($user_data['user_username'])) {
-    $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Pour accéder à <b>Vos bon plans</b>, veuillez vous connecter !</p>';
+    $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Pour accéder à <b>Votre budget</b>, veuillez vous connecter !</p>';
     header("Location: login.php");
+    die;
 }
+
+$query = "SELECT * FROM user_data WHERE `user_id` = ". $user_data['user_id'] . " ORDER BY `time` DESC LIMIT 1";
+$result = mysqli_query($con, $query);
+$row = mysqli_fetch_assoc($result);
+if ($result === null || $row === null) {
+    $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Pour accéder à <b>Vos bon plans</b>, veuillez renseigner votre budget !</p>';
+    header("Location: yourbudget.php");
+    die;
+}
+
+$query = "SELECT * FROM user_profile WHERE `user_id` = " . $user_data['user_id'];
+$result = mysqli_query($con, $query);
+$row = mysqli_fetch_assoc($result);
+    foreach ($row as $column => $value) {
+        if ($value === null) {
+            $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Pour accéder à <b>Vos bon plans</b>, veuillez renseigner votre profile !</p>';
+            header("Location: profile.php");
+            die;
+        }
+    }
+
 ?>
+
 
 <!DOCTYPE html>
 
@@ -50,23 +74,166 @@ if (!isset($user_data['user_username'])) {
 </header>
 
 <section>
-    <div class="events">
-        <img class="leftimg" src="media/transport.png" alt="event1">
-        <div class="righttext">
-            <h4>Catégorie</h4>
-            <h2>Nom du bon plan</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec volutpat lacus. Praesent condimentum mauris vel massa consectetur, ac porta lorem aliquet.</p>
-        </div>
-    </div>
+    <h1>Voici les bon plans disponible pour réduire votre plus forte dépense : </h1>
 
-    <div class="events">
-        <div class="lefttext">
-            <h4>Catégorie</h4>
-            <h2>Nom du bon plan</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec volutpat lacus. Praesent condimentum mauris vel massa consectetur, ac porta lorem aliquet.</p>
+    <?php
+
+    mysqli_set_charset($con, "utf8");
+
+    $query = "SELECT * FROM user_data WHERE `user_id` = ". $user_data['user_id'] . " ORDER BY `time` DESC LIMIT 1";
+    $result = mysqli_query($con, $query);
+    $userData = mysqli_fetch_assoc($result);
+
+    $query = "SELECT * FROM user_profile WHERE `user_id` = " . $user_data['user_id'];
+    $result = mysqli_query($con, $query);
+    $userProfile = mysqli_fetch_assoc($result);
+
+    $expenses = ['loyer', 'servicepublic', 'alimentation', 'hygiene', 'abonnements', 'assurances', 'transports', 'divertissement', 'autredepense'];
+    $maxExpenseCategory = array_keys($userData, max(array_intersect_key($userData, array_flip($expenses))))[0];
+
+    // Get deals for this category
+    $tempzipcode = substr($userProfile['zipcode'], 0, 2);
+    $tempzipcode = $tempzipcode . "%";
+    $query = "SELECT * FROM deals WHERE `Type` = '" . $maxExpenseCategory . "' AND `MinAge` <= " . $userProfile['age'] . " AND `MaxAge` >= " . $userProfile['age'] . " AND `PostalCode` LIKE '$tempzipcode' ORDER BY `DealId`";
+    // AND `PostalCode` = '" . $userProfile['zipcode'] . "'
+    $result = mysqli_query($con, $query);
+    $deals = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if (empty($deals)) {
+        echo "<h4>Pas de bon plans disponible en fonction de vos paramètres :c</h4>";
+    }else {
+
+        // Output deals as per the HTML template
+        foreach ($deals as $index => $deal) {
+            if ($deal['MinAge'] === null) {
+                $deal['MinAge'] = 'N/A';
+            }
+            if ($deal['MaxAge'] === null) {
+                $deal['MaxAge'] = 'N/A';
+            }
+            if ($deal['PostalCode'] === null) {
+                $deal['PostalCode'] = 'N/A';
+            }
+            if ($index % 2 == 0) {
+                echo '<div class="events">
+        <img class="leftimg" src="media/' . $deal['Type'] . '.png" alt="event1">
+        <div class="righttext">
+            <h4>' . $deal['Type'] . ' - ' . $deal['PostalCode'] . ' - De ' . $deal['MinAge'] . ' à ' . $deal['MaxAge'] . ' ans</h4>
+            <h2>' . $deal['titre'] . '</h2>
+            <p>' . $deal['Description'] . '</p>
         </div>
-        <img class="rightimg" src="media/transport.png" alt="event1">
-    </div>
+    </div>';
+            } else {
+                echo '<div class="events">
+        <div class="lefttext">
+            <h4>' . $deal['Type'] . ' - ' . $deal['PostalCode'] . ' - De ' . $deal['MinAge'] . ' à ' . $deal['MaxAge'] . ' ans</h4>
+            <h2>' . $deal['titre'] . '</h2>
+            <p>' . $deal['Description'] . '</p>
+        </div>
+        <img class="rightimg" src="media/' . $deal['Type'] . '.png" alt="event1">
+    </div>';
+            }
+        }
+    }
+
+    $expenses = array_diff($expenses, [$maxExpenseCategory]);
+    $maxExpenseCategory2 = array_keys($userData, max(array_intersect_key($userData, array_flip($expenses))))[1];
+    $query = "SELECT * FROM deals WHERE `Type` = '" . $maxExpenseCategory2 . "' AND `MinAge` <= " . $userProfile['age'] . " AND `MaxAge` >= " . $userProfile['age'] . " AND `PostalCode` LIKE '$tempzipcode' ORDER BY `DealId`";
+    // AND `PostalCode` = '" . $userProfile['zipcode'] . "'
+    $result = mysqli_query($con, $query);
+    $deals = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if (empty($deals)) {
+        echo "<h4>Pas de bon plans disponible en fonction de vos paramètres :c</h4>";
+    }else {
+
+        // Output deals as per the HTML template
+        foreach ($deals as $index => $deal) {
+            if ($deal['MinAge'] === null) {
+                $deal['MinAge'] = 'N/A';
+            }
+            if ($deal['MaxAge'] === null) {
+                $deal['MaxAge'] = 'N/A';
+            }
+            if ($deal['PostalCode'] === null) {
+                $deal['PostalCode'] = 'N/A';
+            }
+            if ($index % 2 == 0) {
+                echo '<div class="events">
+        <img class="leftimg" src="media/' . $deal['Type'] . '.png" alt="event1">
+        <div class="righttext">
+            <h4>' . $deal['Type'] . ' - ' . $deal['PostalCode'] . ' - De ' . $deal['MinAge'] . ' à ' . $deal['MaxAge'] . ' ans</h4>
+            <h2>' . $deal['titre'] . '</h2>
+            <p>' . $deal['Description'] . '</p>
+        </div>
+    </div>';
+            } else {
+                echo '<div class="events">
+        <div class="lefttext">
+            <h4>' . $deal['Type'] . ' - ' . $deal['PostalCode'] . ' - De ' . $deal['MinAge'] . ' à ' . $deal['MaxAge'] . ' ans</h4>
+            <h2>' . $deal['titre'] . '</h2>
+            <p>' . $deal['Description'] . '</p>
+        </div>
+        <img class="rightimg" src="media/' . $deal['Type'] . '.png" alt="event1">
+    </div>';
+            }
+        }
+    }
+
+    // Get and output all other deals not in the maximum expense category
+    $query = "SELECT * FROM deals";
+    $result = mysqli_query($con, $query);
+    $otherDeals = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+
+    echo '<h1>Tous les bon plans :</h1>';
+
+    foreach($otherDeals as $index => $deal) {
+        if ($deal['MinAge'] === null) {$deal['MinAge'] = 'N/A';}
+        if ($deal['MaxAge'] === null) {$deal['MaxAge'] = 'N/A';}
+        if ($deal['PostalCode'] === null) {$deal['PostalCode'] = 'N/A';}
+        if($index % 2 == 0) {
+            echo '<div class="events">
+        <img class="leftimg" src="media/'.$deal['Type'].'.png" alt="event2">
+        <div class="righttext">
+            <h4>'.$deal['Type'].' - '.$deal['PostalCode'].' - De '.$deal['MinAge'].' à '.$deal['MaxAge'].' ans</h4>
+            <h2>'.$deal['titre'].'</h2>
+            <p>'.$deal['Description'].'</p>
+        </div>
+    </div>';
+        } else {
+            echo '<div class="events">
+        <div class="lefttext">
+            <h4>'.$deal['Type'].' - '.$deal['PostalCode'].' - De '.$deal['MinAge'].' à '.$deal['MaxAge'].' ans</h4>
+            <h2>'.$deal['titre'].'</h2>
+            <p>'.$deal['Description'].'</p>
+        </div>
+        <img class="rightimg" src="media/'.$deal['Type'].'.png" alt="event2">
+    </div>';
+        }
+    }
+
+
+    ?>
+
+    <!--"
+        <div class="events">
+            <img class="leftimg" src="media/transport.png" alt="event1">
+            <div class="righttext">
+                <h4>Catégorie</h4>
+                <h2>Nom du bon plan</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec volutpat lacus. Praesent condimentum mauris vel massa consectetur, ac porta lorem aliquet.</p>
+            </div>
+        </div>
+
+        <div class="events">
+            <div class="lefttext">
+                <h4>Catégorie</h4>
+                <h2>Nom du bon plan</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec volutpat lacus. Praesent condimentum mauris vel massa consectetur, ac porta lorem aliquet.</p>
+            </div>
+            <img class="rightimg" src="media/transport.png" alt="event1">
+        </div>-->
 </section>
 
 
@@ -82,3 +249,4 @@ if (!isset($user_data['user_username'])) {
 </footer>
 </body>
 </html>
+}
