@@ -8,7 +8,7 @@ include("functions.php");
 $user_data = check_login($con);
 
 if (!isset($user_data['user_username'])) {
-    $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Pour accéder à <b>Votre budget</b>, veuillez vous connecter !</p>';
+    $_SESSION['message'] = '<p style="color: red; text-align: center; padding: 2px; width: 100vw;">Pour accéder à <b>Vos bon plans</b>, veuillez vous connecter !</p>';
     header("Location: login.php");
     die;
 }
